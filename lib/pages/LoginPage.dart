@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage>{
           child: Column(
             mainAxisAlignment:MainAxisAlignment.center ,
             children: [
-              Text("Login",
+              Text("Log",
                 style: TextStyle(
                   fontSize:35,
                   color: Colors.white,
