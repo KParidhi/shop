@@ -167,15 +167,18 @@ class _HomePageState extends State<HomePage> {
             Icon(Icons.home,
               size:30,
           color: Colors.white,),
-       Icon(Icons.person,
-            size:30,
-            color: Colors.white,),
+
           //Inkwell(
            // onTap:ImageInput(),
-           // child: Icon(Icons.camera_alt,
-            //size:30,
-           // color: Colors.white,
-         // ),),
+           // child:
+          Icon(Icons.camera_alt,
+            size:30,
+           color: Colors.white,
+         ),
+          Icon(Icons.person,
+            size:30,
+            color: Colors.white,),
+
 ]
       ),
     );
