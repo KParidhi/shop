@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class CartItemSamples extends StatelessWidget{
+class CartItemSamples extends StatefulWidget{
+  @override
+  State<CartItemSamples> createState() => _CartItemSamplesState();
+}
+
+class _CartItemSamplesState extends State<CartItemSamples> {
   @override
   Widget build(BuildContext context){
-    return Column(
+    return
+     Container(child: Column(
       children: [
         for(int i=1;i<4;i++)
         Container(
@@ -61,6 +67,8 @@ class CartItemSamples extends StatelessWidget{
             ),
     ),
    ],
+    ),
+
     );
   }
 }

@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:home/widgets/CartAppBar.dart';
 import 'package:home/widgets/CartBottomNavBar.dart';
 import 'package:home/widgets/CartItemSamples.dart';
-class CartPage extends StatelessWidget{
+class CartPage extends StatefulWidget{
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context){
 return Scaffold(

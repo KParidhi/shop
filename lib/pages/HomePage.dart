@@ -3,6 +3,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'package:flutter/material.dart';
+import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/services/camera.dart';
 import 'package:home/widgets/CartItemSamples.dart';
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                     leading: Icon(Icons.shopping_bag_outlined),
                     onTap: (){
                       Navigator.of(context).pop();
-                      Navigator.push(context,MaterialPageRoute(builder:(context) => CartItemSamples()));
+                      Navigator.push(context,MaterialPageRoute(builder:(context) => CartPage()));
                     }
 
                 ),

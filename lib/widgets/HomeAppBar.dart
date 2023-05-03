@@ -2,7 +2,12 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:home/widgets/CartItemSamples.dart';
 
-class HomeAppBar extends StatelessWidget{
+class HomeAppBar extends StatefulWidget{
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context){
     return  Container(
@@ -39,13 +44,13 @@ class HomeAppBar extends StatelessWidget{
           child:Icon(Icons.shopping_bag_outlined,
           size:32,
           color:Colors.black),
-          
+
     )
 
 
         ],
       ),
-      
+
     );
   }
 }

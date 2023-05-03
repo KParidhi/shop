@@ -8,6 +8,7 @@ import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/ItemPage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/widgets/CartItemSamples.dart';
 
 
 Future<void> main() async {
@@ -42,7 +43,7 @@ theme: ThemeData(
 ),
 
       routes: {
-  '/':(context)=>SignUpPage(),
+  '/':(context)=>HomePage(),
   "cartPage":(context)=>CartPage(),
   "itemPage":(context)=>ItemPage(),
 },
