@@ -43,7 +43,7 @@ theme: ThemeData(
 ),
 
       routes: {
-  '/':(context)=>HomePage(),
+  '/':(context)=>SignUpPage(),
   "cartPage":(context)=>CartPage(),
   "itemPage":(context)=>ItemPage(),
 },
