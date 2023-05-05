@@ -1,16 +1,11 @@
 
-
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
 import 'package:flutter/material.dart';
-import 'package:home/pages/CartPage.dart';
-import 'package:home/pages/LoginPage.dart';
+import 'package:home/pages/HomeBody.dart';
+import 'package:home/pages/ItemForm.dart';
+import 'package:home/pages/display_item.dart';
 import 'package:home/services/camera.dart';
-import 'package:home/widgets/CartItemSamples.dart';
 
-import 'package:home/widgets/CategoriesWidget.dart';
-import 'package:home/widgets/HomeAppBar.dart';
-import '../widgets/ItemsWidget.dart';
 class HomePage extends StatefulWidget{
   HomePage({super.key});
   @override
@@ -19,69 +14,49 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
+  var pagesData = [HomeBody(),ItemForm(),DisplayItems()];
+  int selectedItem = 0;
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      drawer: Drawer(
-          child:Column(
-              children:
-              <Widget>[
-                Container(
-                  color: Colors.orange,
-                  width: double.infinity,
-                  child:Column(
-                    children:
-                    <Widget>[
-                      Container(
-                          width: 100,
-                          height:180,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: NetworkImage("https://th.bing.com/th/id/OIP.1dzpxcuf7LgyKLgNtp6zhQHaFA?pid=ImgDet&rs=1"),
-                                fit:BoxFit.fill,
-                              )
-                          )
-                      ),
-                      Text("Name",
-                        style: TextStyle(fontSize: 25,
-                            color: Colors.white),),
-                    ],
-                  ),
-                ),
-                ListTile(
-                    title: Text("My Orders"),
-                    leading: Icon(Icons.shopping_bag_outlined),
-                    onTap: (){
-                      Navigator.of(context).pop();
-                      Navigator.push(context,MaterialPageRoute(builder:(context) => CartPage()));
-                    }
 
-                ),
-                ListTile(
-                    title: Text("Settings"),
-                    leading: Icon(Icons.settings)
-                ),
-                ListTile(
-                    title: Text("My products"),
-                    leading: Icon(Icons.sell)
-                ),
-                ListTile(
-                    title: Text("Log Out"),
-                    leading: Icon(Icons.logout),
-                  onTap: (){
-                      Navigator.of(context).pop();
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-                      },
-                )
-              ]
 
-          )
+
+      body:pagesData[selectedItem],
+
+      // pagesata[selectedItem],
+
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+
+        height: 60,
+        color:Colors.orange ,
+        items:[
+          Icon(Icons.home,
+              size:30,
+              color: Colors.white),
+          Icon(Icons.add,
+            size:30,
+            color: Colors.white,),
+          Icon(Icons.person,
+            size:30,
+            color: Colors.white,
+          ),
+
+        ],
+        index: selectedItem,
+        onTap: (setValue){
+
+          setState(() {
+            selectedItem =setValue;
+          });
+        },
       ),
+    );
 
-
-      body:
-      ListView(
+  }
+}
+     /* ListView(
             children: [
                   HomeAppBar(),
                     Container(
@@ -182,11 +157,9 @@ class _HomePageState extends State<HomePage> {
 
 ]
       ),
-    );
+   */
 
-  }
 
-}
 
 
 
