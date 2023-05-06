@@ -4,11 +4,12 @@ class ItemsWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return GridView.count(
-      childAspectRatio:0.68 ,
+      childAspectRatio:0.58 ,
       //disables the scroll functionality of grid view
       //and it scroll with list view of home page
       physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
+
       shrinkWrap: true,
       children: [
         for(int i=1;i<5;i++)

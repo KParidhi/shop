@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+//this page displays items in a grid view
 
 class DisplayItems extends StatefulWidget{
   @override
@@ -24,6 +25,7 @@ class Next extends State<DisplayItems>{
   Widget build(BuildContext context) {
      return Scaffold(
       body: Center(
+
       child: StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -43,7 +45,8 @@ class Next extends State<DisplayItems>{
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
-        crossAxisSpacing: 8,),
+        crossAxisSpacing: 8,
+        childAspectRatio: 0.58),
 
             itemBuilder: (BuildContext context, int index) {
               // Get the product data from the Firebase snapshot
@@ -55,12 +58,86 @@ class Next extends State<DisplayItems>{
                 price: data['ProductPrice'],
                 imageUrl: data['image'],
               );
-              return InkWell(
+              return
+                Expanded(child:
+                Container(
+                  padding: EdgeInsets.only(left:15,right: 15,top: 10),
+                  margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 150,
+                        alignment: Alignment.topRight,
+                        child:
+                        IconButton(
+                          icon:Icon(Icons.favorite_border,color: Colors.red,),
+                          onPressed: () { },
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, "itemPage");
+                        },
+                        child:Container(
+                          margin:EdgeInsets.all(8),
+                          child:CachedNetworkImage(
+
+                            imageUrl: product.imageUrl,
+                            fit: BoxFit.fitHeight,
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                          ),
+                          height: 120,
+                          width: 120,
+
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        alignment:Alignment.centerLeft,
+                        child:Text(product.name,style:TextStyle(fontSize:18,
+                          color: Colors.orange,
+                          fontWeight:FontWeight.bold,
+                        ) ,
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical:10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("\u{20B9}${product.price}",
+                              style:TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              ) ,),
+                            Icon(Icons.shopping_cart_checkout,
+                              color:Colors.orange,
+                            )
+                          ],
+                        ),)
+                    ],
+                  ),
+                ),);}
+          );}
+      ),
+      ),)
+     ;}}
+
+    /*InkWell(
                   onTap: () {
                     // Navigate to the product detail page
                   },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
+
                   children: [
                 Expanded(
               // Return a grid tile with the product image
@@ -96,7 +173,7 @@ class Next extends State<DisplayItems>{
       },
      )));
   }
-}
+}*/
 
 
   /* return Scaffold(

@@ -33,7 +33,7 @@ class page extends State<ItemForm> {
 
  //String selectedValue= "";//Selected value for dropdown(for choosing category)
 // List<String> categories =<String>['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-  String dropdownValue = 'Dog';
+  String dropdownValue = 'Books';
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ class page extends State<ItemForm> {
                   borderRadius: BorderRadius.circular(20),
                   //border: Border.all(color: Colors.redAccent),
                 // Step 4.
-                items: <String>['Dog', 'Books', 'Staionary', 'Daily Use','others...']
+                items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

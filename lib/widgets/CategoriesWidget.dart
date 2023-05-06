@@ -15,18 +15,24 @@ class CategoriesWidget extends StatelessWidget{
           decoration:BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),),
+
             child:
 
             Column(
+
               children:[
-                    Image.asset("images/1.jpg",width:40,height: 40,),
-                    Text("borla",style:TextStyle(
+                InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, "displayItems");
+                  },
+       child:  Image.asset("images/book.jpg",width:40,height: 40,),),
+                    Text("Books",style:TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 8,
                       color: Colors.orange,
                     )),
-                  ],
-            ),),
+                  ],)
+            ),
       Container(
         margin:EdgeInsets.symmetric(horizontal: 8.0),
         padding:EdgeInsets.symmetric(vertical: 5,horizontal:10),
@@ -37,8 +43,12 @@ class CategoriesWidget extends StatelessWidget{
 
         Column(
           children:[
-            Image.asset("images/2.jpg",width:40,height: 40,),
-            Text("kanha",style:TextStyle(
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, "displayItems");
+                },
+         child:   Image.asset("images/stationery.png",width:40,height: 40,),),
+            Text("Stationery",style:TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 8,
               color: Colors.orange,
@@ -55,7 +65,11 @@ class CategoriesWidget extends StatelessWidget{
 
         Column(
           children:[
-            Image.asset("images/3.jpg",width:40,height: 40,),
+  InkWell(
+  onTap: (){
+  Navigator.pushNamed(context, "displayItems");
+  },
+         child:   Image.asset("images/elec.jpg",width:40,height: 40,),),
             Text("pouch",style:TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 8,
@@ -73,18 +87,50 @@ class CategoriesWidget extends StatelessWidget{
 
         Column(
           children:[
-            Image.asset("images/4.jpg",width:40,height: 40,),
-            Text("stone",style:TextStyle(
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, "displayItems");
+                  },
+          child:  Image.asset("images/daily.jpg",width:40,height: 40,),),
+            Text("Daily Use",style:TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 8,
               color: Colors.orange,
             )),
           ],
-        ),),
+        ),
+
+
+    ),
+  Container(
+    margin:EdgeInsets.symmetric(horizontal: 8.0),
+    padding:EdgeInsets.symmetric(vertical: 5,horizontal:10),
+    decoration:BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(20),),
+    child:
+
+    Column(
+    children:[
+    InkWell(
+    onTap: (){
+    Navigator.pushNamed(context, "displayItems");
+    },
+    child:  Image.asset("images/other.png",width:40,height: 40,),),
+    Text("Others",style:TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 8,
+  color: Colors.orange,
+  )),
+  ],
+  ),
+
+  ),],),)
+  ;
 
 
 
-    ],),);
+
 
   }
 }

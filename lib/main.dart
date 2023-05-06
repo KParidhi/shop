@@ -10,6 +10,8 @@ import 'package:home/pages/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:home/widgets/CartItemSamples.dart';
 
+import 'pages/display_item.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +48,7 @@ theme: ThemeData(
   '/':(context)=>SignUpPage(),
   "cartPage":(context)=>CartPage(),
   "itemPage":(context)=>ItemPage(),
+   "displayItems" : (context)=>DisplayItems(),
 },
 
         );
