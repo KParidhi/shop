@@ -5,6 +5,7 @@ import 'package:home/pages/HomeBody.dart';
 import 'package:home/pages/ItemForm.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/services/camera.dart';
+import 'package:home/services/products.dart';
 
 class HomePage extends StatefulWidget{
   HomePage({super.key});
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  var pagesData = [HomeBody(),ItemForm(),DisplayItems()];
+  var pagesData = [HomeBody(),ProductsScreen(),DisplayItems()];
   int selectedItem = 0;
   @override
   Widget build(BuildContext context){
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
       body:pagesData[selectedItem],
 
-      // pagesata[selectedItem],
+      // pagesdata[selectedItem],
 
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,

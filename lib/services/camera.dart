@@ -29,20 +29,34 @@ class _ImageInputState extends State<ImageInput>{
   }
   @override
    Widget build(BuildContext context){
-    Widget content = ElevatedButton(onPressed: (){
-      _takePicture;
-    },
-      child: Icon(Icons.camera_alt),
+    Widget content = TextButton.icon(
+      icon:const Icon(Icons.camera_alt,color: Colors.orange,),
+      label:const Text("Take Picture",
+      style: TextStyle(
+        color: Colors.orange
+      ),),
+      onPressed:
+      _takePicture,
     );
     if(_selectedImage!=null){
       content = GestureDetector(
         onTap:_takePicture,
-        child: Image.file(_selectedImage!,));
+        child: Image.file(_selectedImage!,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,));
     }
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        ),
+      ),
       height: 250,
-      width:  double.infinity,
+      width: double.infinity,
       alignment: Alignment.center,
+      child: content,
 
     );
 

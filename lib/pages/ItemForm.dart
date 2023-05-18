@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:home/services/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
@@ -43,6 +44,7 @@ class page extends State<ItemForm> {
             child: Column(children: [
             Expanded(
               child:Container(
+
                 width:300,
                 decoration:BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -56,7 +58,8 @@ class page extends State<ItemForm> {
 
 
                 FloatingActionButton(
-                    child: Icon(Icons.camera_alt,color: Colors.redAccent,),
+                  backgroundColor: Colors.orange,
+                    child: Icon(Icons.image,color: Colors.white,),
                     onPressed: ()async{
                       ImagePicker image = ImagePicker();
                       XFile? file= await image.pickImage(source: ImageSource.gallery);
@@ -81,6 +84,7 @@ class page extends State<ItemForm> {
                         AlertDialog(title: Text(error.toString()));
                       }
                     }),
+                      ImageInput(),
               ]),),),),
               TextField(
                   onChanged: (value){
@@ -155,6 +159,9 @@ class page extends State<ItemForm> {
                 height: 16,
               ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.orange
+          ),
         child: Text("click"),
     onPressed:() async {
     await OurShop.add({ 'ProductName': name,

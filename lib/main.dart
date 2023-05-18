@@ -3,20 +3,24 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/ItemPage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/services/add_product.dart';
+import 'package:home/services/products.dart';
 import 'package:home/widgets/CartItemSamples.dart';
-
 import 'pages/display_item.dart';
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+       ProviderScope(child:MyApp()),
+  );
 }
 class MyApp extends StatefulWidget{
   MyApp({super.key});
@@ -45,7 +49,8 @@ theme: ThemeData(
 ),
 
       routes: {
-  '/':(context)=>SignUpPage(),
+  '/' // :(ctx)=>ProductsScreen(),
+      :(context)=>HomePage(),
   "cartPage":(context)=>CartPage(),
   "itemPage":(context)=>ItemPage(),
    "displayItems" : (context)=>DisplayItems(),
