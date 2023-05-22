@@ -75,7 +75,7 @@ class page extends State<ItemForm> {
 
 
 
-                      //cade was here
+                      //firebase_services me iska code hai
                       imgUrl =await FirebaseServices.getImage(file);
                       print(imgUrl);
                     }),
@@ -87,10 +87,10 @@ class page extends State<ItemForm> {
                       decoration: InputDecoration(
 
                       labelText: 'Product Name',
-        hintText: 'enter name',
-        prefixIcon: Icon(Icons.drive_file_rename_outline),
+                       hintText: 'enter name',
+                        prefixIcon: Icon(Icons.drive_file_rename_outline),
 
-        border: OutlineInputBorder()
+                         border: OutlineInputBorder()
         ),
     ),
               TextField(
@@ -158,6 +158,8 @@ class page extends State<ItemForm> {
             backgroundColor: Colors.orange
           ),
         child: Text("click"),
+
+    //yahan pe data add ho rha hai firestore me
     onPressed:() async {
     await OurShop.add({ 'ProductName': name,
       'ProductPrice' : price,
