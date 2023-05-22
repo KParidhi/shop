@@ -1,11 +1,13 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/HomeBody.dart';
 import 'package:home/pages/ItemForm.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/services/camera.dart';
 import 'package:home/services/products.dart';
+import 'package:home/widgets/category_list.dart';
 
 class HomePage extends StatefulWidget{
   HomePage({super.key});
@@ -15,7 +17,7 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  var pagesData = [HomeBody(),ProductsScreen(),DisplayItems()];
+  var pagesData = [HomeBody(),CategoryList(),CartPage()];
   int selectedItem = 0;
   @override
   Widget build(BuildContext context){
@@ -39,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           Icon(Icons.add,
             size:30,
             color: Colors.white,),
-          Icon(Icons.person,
+          Icon(Icons.shopping_cart,
             size:30,
             color: Colors.white,
           ),
