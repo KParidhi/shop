@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home/pages/Categorial_ItemList.dart';
 class CategoriesWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context)
@@ -23,7 +24,10 @@ class CategoriesWidget extends StatelessWidget{
               children:[
                 InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, "displayItems");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoryItem("Books")),
+                  );
                   },
        child:  Image.asset("images/book.jpg",width:40,height: 40,),),
                     Text("Books",style:TextStyle(
@@ -45,7 +49,10 @@ class CategoriesWidget extends StatelessWidget{
           children:[
             InkWell(
               onTap: (){
-                Navigator.pushNamed(context, "displayItems");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryItem("Stationary")),
+                );
                 },
          child:   Image.asset("images/stationery.png",width:40,height: 40,),),
             Text("Stationery",style:TextStyle(
@@ -67,10 +74,13 @@ class CategoriesWidget extends StatelessWidget{
           children:[
   InkWell(
   onTap: (){
-  Navigator.pushNamed(context, "displayItems");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CategoryItem(	"Electronics")),
+    );
   },
          child:   Image.asset("images/elec.jpg",width:40,height: 40,),),
-            Text("pouch",style:TextStyle(
+            Text("Electronics",style:TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 8,
               color: Colors.orange,
@@ -89,7 +99,10 @@ class CategoriesWidget extends StatelessWidget{
           children:[
               InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, "displayItems");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoryItem('Daily Use')),
+                  );
                   },
           child:  Image.asset("images/daily.jpg",width:40,height: 40,),),
             Text("Daily Use",style:TextStyle(
@@ -114,7 +127,10 @@ class CategoriesWidget extends StatelessWidget{
     children:[
     InkWell(
     onTap: (){
-    Navigator.pushNamed(context, "displayItems");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CategoryItem('others...')),
+      );
     },
     child:  Image.asset("images/other.png",width:40,height: 40,),),
     Text("Others",style:TextStyle(

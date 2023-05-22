@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home/pages/display_item.dart';
+
+
 
 class ItemsWidget extends StatelessWidget{
   @override
@@ -41,13 +44,13 @@ class ItemsWidget extends StatelessWidget{
                   child:Image.asset("images/$i.jpg",),
                   height: 120,
                     width: 120,
-                  
+
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 8),
                   alignment:Alignment.centerLeft,
-                  child:Text("Product title",style:TextStyle(fontSize:18,
+                  child:Text("product name",style:TextStyle(fontSize:18,
                     color: Colors.orange,
                     fontWeight:FontWeight.bold,
                   ) ,

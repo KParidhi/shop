@@ -7,6 +7,8 @@ import 'package:home/widgets/CategoriesWidget.dart';
 import '../widgets/ItemsWidget.dart';
 import 'package:home/widgets/HomeAppBar.dart';
 
+import 'display_item.dart';
+
 void main(){runApp(
     MaterialApp(
         title:"Home Screen",
@@ -159,6 +161,8 @@ class HomeScreen extends State<HomeBody> {
                       ),
                     ),
                     ItemsWidget(), //Categories
+
+
                   ]
               ),
             )

@@ -1,6 +1,8 @@
  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
  class ItemBottomNavBar extends StatelessWidget{
+   String price;
+   ItemBottomNavBar(this.price);
   @override
   Widget build(BuildContext context){
    return BottomAppBar(
@@ -22,7 +24,7 @@ import 'package:flutter/material.dart';
       child: Row(
        mainAxisAlignment:MainAxisAlignment.spaceBetween ,
        children: [
-        Text('\u{20B9}${200}',
+        Text('\u{20B9}${price}',
         style: TextStyle(
          fontSize: 25,
          fontWeight: FontWeight.bold,

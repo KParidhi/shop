@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:home/widgets/ItemAppBar.dart';
 import 'package:home/widgets/ItemBottomNavBar.dart';
 class ItemPage extends StatelessWidget{
+  final String name,img,price;
+
+  ItemPage(this.name, this.img, this.price);
   @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor:Color(0xFFEDECF2),
       body: ListView(
         children: [
-          ItemAppBar(),
+          ItemAppBar(name),
           Padding(padding: EdgeInsets.all(16),
-              child:Image.asset("images/1.jpg",
+              child:Image.network(img,
               height: 300,),
           ),
         Arc(
@@ -30,7 +33,7 @@ class ItemPage extends StatelessWidget{
                     bottom: 15,),
                   child: Row(
                     children: [
-                      Text("Product Title",
+                      Text(name,   //name
                       style: TextStyle(
                         fontSize: 28,
                         color: Colors.orange,
@@ -52,7 +55,7 @@ class ItemPage extends StatelessWidget{
              ),
            ) ,
     ],),
-        bottomNavigationBar:ItemBottomNavBar() ,
+        bottomNavigationBar:ItemBottomNavBar(price) ,
           );
   }
 }

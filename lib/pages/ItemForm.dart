@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:home/services/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:home/services/firebase_services.dart';
 import 'dart:core';
 
 
@@ -28,9 +29,9 @@ class page extends State<ItemForm> {
   String name = "",col ="",price="";
 
   CollectionReference OurShop = FirebaseFirestore.instance.collection("item");
-  String imgUrl=""; //for storing image in firestore
+  String? imgUrl=""; //for storing image in firestore
 
- late File img= File('images/1.jpg');//initial image
+ File? img;//initial image
 
  //String selectedValue= "";//Selected value for dropdown(for choosing category)
 // List<String> categories =<String>['Option 1', 'Option 2', 'Option 3', 'Option 4'];
@@ -54,37 +55,31 @@ class page extends State<ItemForm> {
                 child: Center(
                   child: Column(
                     children:[
-                      img==null? Center(child: Text("select image")):Image.file(img),
+                     // img==null? Center(child: Text("select image")):Image.file?(img),
 
 
                 FloatingActionButton(
                   backgroundColor: Colors.orange,
                     child: Icon(Icons.image,color: Colors.white,),
-                    onPressed: ()async{
+                    onPressed: ()async {
                       ImagePicker image = ImagePicker();
-                      XFile? file= await image.pickImage(source: ImageSource.gallery);
+                      XFile? file = await image.pickImage(
+                          source: ImageSource.gallery);
                       //print ('${file?.path}');
                       setState(() {
-                        if(file!=null){
-                          img=File(file.path);}
-
+                        if (file != null) {
+                          img = File(file.path);
+                        }
                       });
-                      String uniqueName=DateTime.now().millisecondsSinceEpoch.toString();
+                      ImageInput();
 
-                      Reference referenceRoot= FirebaseStorage.instance.ref();
-                      Reference refImg= referenceRoot.child('image');
-                      Reference imgToUpload= refImg.child(uniqueName);
 
-                      try{
-                        await imgToUpload.putFile(File(file!.path));
-                        imgUrl= await imgToUpload.getDownloadURL();
-                        //print(imgUrl);
-                      }
-                      catch(error){
-                        AlertDialog(title: Text(error.toString()));
-                      }
+
+                      //cade was here
+                      imgUrl =await FirebaseServices.getImage(file);
+                      print(imgUrl);
                     }),
-                      ImageInput(),
+
               ]),),),),
               TextField(
                   onChanged: (value){
@@ -192,24 +187,5 @@ class cartpage extends StatelessWidget {
   }
 }
 
-class chatpage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Chat"),
-      ),
-    );
-  }
-}
 
-class firstpage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("First"),
-      ),
-    );
-  }
-}
+

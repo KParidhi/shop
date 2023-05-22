@@ -25,7 +25,7 @@ class Next extends State<DisplayItems>{
   Widget build(BuildContext context) {
      return Scaffold(
       body: Center(
-
+      child: SingleChildScrollView(
       child: StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -42,11 +42,11 @@ class Next extends State<DisplayItems>{
             itemCount: snapshot.data!.docs.length,
             padding: const EdgeInsets.all(8),
 
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        childAspectRatio: 0.58),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            childAspectRatio: 0.58),
 
             itemBuilder: (BuildContext context, int index) {
               // Get the product data from the Firebase snapshot
@@ -86,7 +86,6 @@ class Next extends State<DisplayItems>{
                         child:Container(
                           margin:EdgeInsets.all(8),
                           child:CachedNetworkImage(
-
                             imageUrl: product.imageUrl,
                             fit: BoxFit.fitHeight,
                             placeholder: (context, url) => const CircularProgressIndicator(),
@@ -108,15 +107,15 @@ class Next extends State<DisplayItems>{
                       ),
 
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical:10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("\u{20B9}${product.price}",
-                              style:TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.orange,
+                            padding: EdgeInsets.symmetric(vertical:10),
+                            child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("\u{20B9}${product.price}",
+                                style:TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orange,
                               ) ,),
                             Icon(Icons.shopping_cart_checkout,
                               color:Colors.orange,
@@ -128,7 +127,7 @@ class Next extends State<DisplayItems>{
                 ),);}
           );}
       ),
-      ),)
+      ),),)
      ;}}
 
     /*InkWell(

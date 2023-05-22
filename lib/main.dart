@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:home/services/add_product.dart';
 import 'package:home/services/products.dart';
 import 'package:home/widgets/CartItemSamples.dart';
+import 'pages/Categorial_ItemList.dart';
 import 'pages/display_item.dart';
 
 
@@ -51,9 +52,10 @@ theme: ThemeData(
       routes: {
   '/' // :(ctx)=>ProductsScreen(),
       :(context)=>HomePage(),
-  "cartPage":(context)=>CartPage(),
-  "itemPage":(context)=>ItemPage(),
+   "cartPage":(context)=>CartPage(),
+  //"itemPage":(context)=>ItemPage(),
    "displayItems" : (context)=>DisplayItems(),
+    //"Categorical_item":(context)=>CategoryItem(),
 },
 
         );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home/services/firebase_services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -14,6 +15,7 @@ class ImageInput extends StatefulWidget{
 
 class _ImageInputState extends State<ImageInput>{
    File? _selectedImage;
+   String? imgUrl="";
   void _takePicture() async {
     final imagePicker = ImagePicker();
     final pickedImage = await imagePicker.pickImage(
@@ -26,6 +28,7 @@ class _ImageInputState extends State<ImageInput>{
         _selectedImage = File(pickedImage.path);
       }
     });
+    imgUrl=await FirebaseServices.getImage(pickedImage);
   }
   @override
    Widget build(BuildContext context){
@@ -60,5 +63,7 @@ class _ImageInputState extends State<ImageInput>{
 
     );
 
+
   }
+
 }
