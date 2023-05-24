@@ -6,6 +6,7 @@ import 'package:home/widgets/CategoriesWidget.dart';
 
 import '../widgets/ItemsWidget.dart';
 import 'package:home/widgets/HomeAppBar.dart';
+import 'package:home/pages/ItemGrid.dart';
 
 void main(){runApp(
     MaterialApp(
@@ -86,82 +87,88 @@ class HomeScreen extends State<HomeBody> {
       ListView(
           children: [
             HomeAppBar(),
-            Container(
-              height: 2000,
-              padding: EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                color: Color(0xFFEDECF2),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(35),
-                  topRight: Radius.circular(35),
+            Expanded(
+              child: Container(
+                height: 5000,
+                padding: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  color: Color(0xFFEDECF2),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(35),
+                    topRight: Radius.circular(35),
+                  ),
                 ),
-              ),
-              child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
 
-                      child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 5),
-                              height: 60,
-                              width: 100,
-                              child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Search here ...",
-                                  )
-                              ),
+                  child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
 
-                            ),
+                          child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 5),
+                                  height: 60,
+                                  width: 100,
+                                  child: TextFormField(
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "Search here ...",
+                                      )
+                                  ),
 
-                            Spacer(),
-                            Icon(Icons.camera_alt,
-                              size: 27,
-                              color: Colors.orange,
-                            )
-                          ]),
+                                ),
 
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: 10),
-                      margin: EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 10,),
+                                Spacer(),
+                                Icon(Icons.camera_alt,
+                                  size: 27,
+                                  color: Colors.orange,
+                                )
+                              ]),
 
-
-                      child: Text("Categories",
-                        style: TextStyle(
-                          fontSize: 25, fontWeight: FontWeight.bold,
-                          color: Colors.orange,),
-                      ),
-                    ),
-                    CategoriesWidget(),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 20),
-                      child: Text(
-                        "Latest items",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange,
                         ),
-                      ),
-                    ),
-                    ItemsWidget(), //Categories
-                  ]
-              ),
-            )
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(left: 10),
+                          margin: EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 10,),
+
+
+                          child: Text("Categories",
+                            style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold,
+                              color: Colors.orange,),
+                          ),
+                        ),
+                        CategoriesWidget(),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 20),
+                          child: Text(
+                            "Latest items",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ),
+                          ),
+                        ),
+                        ItemsWidget(),
+                       
+                        //ItemGrid(),
+                      ]
+                  ),
+                ),
+            ),
+
           ]
       ),);
   }

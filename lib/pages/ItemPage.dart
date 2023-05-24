@@ -2,19 +2,21 @@ import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:home/widgets/ItemAppBar.dart';
 import 'package:home/widgets/ItemBottomNavBar.dart';
+import 'package:home/models/category_item.dart';
 class ItemPage extends StatelessWidget{
-  final String name,img,price;
+  final CategoryItem Item;
+  int index;
 
-  ItemPage(this.name, this.img, this.price);
+  ItemPage(this.Item, this.index);
   @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor:Color(0xFFEDECF2),
       body: ListView(
         children: [
-          ItemAppBar(name),
+          ItemAppBar(Item.name),
           Padding(padding: EdgeInsets.all(16),
-              child:Image.network(img,
+              child:Image.network(Item.image.toString(),
               height: 300,),
           ),
         Arc(
@@ -33,7 +35,7 @@ class ItemPage extends StatelessWidget{
                     bottom: 15,),
                   child: Row(
                     children: [
-                      Text(name,   //name
+                      Text(Item.name,   //name
                       style: TextStyle(
                         fontSize: 28,
                         color: Colors.orange,
@@ -55,7 +57,7 @@ class ItemPage extends StatelessWidget{
              ),
            ) ,
     ],),
-        bottomNavigationBar:ItemBottomNavBar(price) ,
+        bottomNavigationBar:ItemBottomNavBar(Item.quantity.toString()) ,
           );
   }
 }

@@ -1,5 +1,6 @@
 
 import 'dart:core';
+import 'dart:io';
 
 
 
@@ -19,11 +20,14 @@ import 'package:image_picker/image_picker.dart';
 class NewItem extends StatefulWidget{
    NewItem({super.key});
 
+
+
   @override
   State<NewItem> createState(){
     return _NewItemState();
   }
 }
+
 class _NewItemState extends State<NewItem>
 {
   final _formKey = GlobalKey<FormState>();
@@ -46,6 +50,7 @@ class _NewItemState extends State<NewItem>
           'name':_enteredName,
           'quantity': _enteredQuantity,
           'category': _selectedCategory.title,
+          'image': imgUrl,
 
         },),
 
@@ -60,10 +65,16 @@ class _NewItemState extends State<NewItem>
       name: _enteredName,
           quantity: _enteredQuantity,
         category: _selectedCategory,
+        image: imgUrl,
+
       ));
     }
   }
   //String imageUrl='';
+  File? _selectedImage;
+  String? imgUrl="";
+  File? img;
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -80,6 +91,18 @@ class _NewItemState extends State<NewItem>
                   key: _formKey,
                   child:Column(
                     children: [
+                       FloatingActionButton(
+                           backgroundColor: Colors.orange,
+                           child: Icon(Icons.image,color: Colors.white,),
+                           onPressed: ()async {
+                             ImagePicker image = ImagePicker();
+                             XFile? file = await image.pickImage(source: ImageSource.gallery);
+                             setState(() {
+                               if (file != null) {
+                                 img = File(file.path);}
+                             });
+                             imgUrl =await FirebaseServices.getImage(file);
+                           }),
                       TextFormField(
                         maxLength: 50,
                         decoration: InputDecoration(
@@ -177,15 +200,18 @@ class _NewItemState extends State<NewItem>
                               ) ,
                               child: Text("Add Item"))
                         ],
-                      )
+                      ),
 
                     ],
                   ),
                 ),
 
               ),
-               // IconButton(onPressed: () async {
-               //   ImagePicker imagePicker = ImagePicker();
+
+
+
+               //IconButton(onPressed: () async {
+               // ImagePicker imagePicker = ImagePicker();
                //   XFile? file = await imagePicker.pickImage(
                //       source: ImageSource.camera);
                //   print('${file?.path}');

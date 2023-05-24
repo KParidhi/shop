@@ -80,10 +80,10 @@ class CategoryItems extends State<CategoryItem> {
             onTap: (){
             //Navigator.pushNamed(context, "itemPage");
             //Get.to(()=> ItemPage(product.name));
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ItemPage(product.name,product.imageUrl,product.price)),
-                );
+               // Navigator.push(
+                    //context,
+                   // MaterialPageRoute(builder: (context) => ItemPage(product.name,product.imageUrl,product.price)),
+                //);
             },
             child:Container(
             margin:EdgeInsets.all(8),

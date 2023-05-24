@@ -46,6 +46,7 @@ class _CategoryListState extends State<CategoryList> {
           name:item.value['name'],
           quantity: item.value['quantity'],
           category: category,
+          image: item.value['image'],
         ));
       }
       //print(response.body);

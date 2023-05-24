@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:home/pages/display_item.dart';
+import 'package:home/pages/ItemGrid.dart';
+
+import '../models/category_item.dart';
 
 
 
 class ItemsWidget extends StatelessWidget{
+  List<CategoryItem> Items = [];
+  var _isLoading = true;
+  String? _error;
+
+
   @override
   Widget build(BuildContext context){
     return GridView.count(

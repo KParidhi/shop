@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_database/firebase_database.dart';
 //this page displays items in a grid view
 
 class DisplayItems extends StatefulWidget{
@@ -20,6 +21,7 @@ class Product {
 class Next extends State<DisplayItems>{
 
   final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('item').snapshots();
+  //final databaseReference = FirebaseDatabase.instance.ref();
 
   @override
   Widget build(BuildContext context) {

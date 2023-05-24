@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home/pages/Categorial_ItemList.dart';
+import 'package:home/pages/ItemGrid.dart';
 class CategoriesWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context)
@@ -26,7 +27,7 @@ class CategoriesWidget extends StatelessWidget{
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CategoryItem("Books")),
+                    MaterialPageRoute(builder: (context) => ItemGrid()),
                   );
                   },
        child:  Image.asset("images/book.jpg",width:40,height: 40,),),
