@@ -44,7 +44,7 @@ class _CategoryListState extends State<CategoryList> {
         firstWhere((catItem)=>catItem.value.title==item.value['category']).value;
         loadedItems.add(CategoryItem(id:item.key,
           name:item.value['name'],
-          quantity: item.value['quantity'],
+          price: item.value['price:\u{20B9}'],
           category: category,
           image: item.value['image'],
         ));
@@ -114,7 +114,7 @@ setState(() {
               color: _categoryItems[index].category.color,
             ),
             trailing: Text(
-              _categoryItems[index].quantity.toString(),
+              _categoryItems[index].price.toString(),
             ),
           ),
         ),

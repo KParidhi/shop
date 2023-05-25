@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage>{
   @override
   void initState() {
     super.initState();
-    // check_if_already_login();
+    check_if_already_login();
   }
 
 
@@ -41,7 +41,9 @@ class _LoginPageState extends State<LoginPage>{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
+    return MaterialApp(
+    home:
+      Scaffold(
       body: SingleChildScrollView(
         child: Container(
           height:MediaQuery.of(context).size.height ,
@@ -61,7 +63,7 @@ class _LoginPageState extends State<LoginPage>{
               ),
               buttonItem("images/googleIcon.png","continue with google",25),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               Text("OR",style: TextStyle(color: Colors.white,fontSize: 20),
 
@@ -80,9 +82,7 @@ class _LoginPageState extends State<LoginPage>{
                 height: 30,
               ),
               colorButton(),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20,),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("If you don't have an account?  ",
@@ -107,18 +107,59 @@ class _LoginPageState extends State<LoginPage>{
               SizedBox(
                 height: 10,
               ),
+          TextButton(
+            onPressed: (){
+              showModalBottomSheet(context: context, builder: (context)=>Container(
+                padding: EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black)
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                padding: EdgeInsets.all(20),
+
+                        child: Row(
+                          children: [
+                            Icon(Icons.mail_outline_rounded,size:60),
+                            SizedBox(width: 10),
+                            Column(
+                                               crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('E-mail',style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),),
+                                Text('Reset via E-mail',style: TextStyle(
+                                  fontSize: 5,
+                                ),),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ));
+            },
+            child:
               Text("Forgot Password",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight:FontWeight.bold ),
               ),
+          )
 
 
 
             ],
           ),
         ),
+      ),
       ),
     );
 
@@ -138,11 +179,11 @@ class _LoginPageState extends State<LoginPage>{
           setState(() {
             circular=false;
           });
-          // if(_emailController!='' && _pwdController!=''){
-          //   print('successful');
-          //   logindata.setBool('login', false);
-          //   logindata.setString('Email...', _emailController.text);
-          // }
+          if(_emailController!='' && _pwdController!=''){
+            print('successful');
+            logindata.setBool('login', false);
+            logindata.setString('Email...', _emailController.text);
+          }
           Navigator.pushAndRemoveUntil(context,
               MaterialPageRoute(builder: (builder)=>HomePage()) ,
                   (route) => false);
@@ -242,16 +283,16 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
   }
-// void check_if_already_login() async {
-//   logindata = await SharedPreferences.getInstance();
-//   newuser = (logindata.getBool('login') ?? true);
-//   print(newuser == false);
-//   if (newuser == false) {
-//     Navigator.pushAndRemoveUntil(context,
-//         new MaterialPageRoute(builder: (context) => HomePage()),
-//             (route)=>false);
-//   }
-// }
+void check_if_already_login() async {
+  logindata = await SharedPreferences.getInstance();
+  newuser = (logindata.getBool('login') ?? true);
+  print(newuser);
+  if (newuser == false) {
+    Navigator.pushAndRemoveUntil(context,
+        new MaterialPageRoute(builder: (context) => HomePage()),
+            (route)=>false);
+  }
+}
 }
 
 

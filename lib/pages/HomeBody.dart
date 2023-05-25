@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/services/Auth_Service.dart';
 import '../widgets/ItemsWidget.dart';
 import 'package:home/widgets/HomeAppBar.dart';
 import 'package:home/pages/ItemGrid.dart';
@@ -23,6 +25,21 @@ class HomeBody extends StatefulWidget{
 }
 
 class HomeScreen extends State<HomeBody> {
+late SharedPreferences logindata;
+late String email;
+
+@override
+void initState(){
+  super.initState();
+  initial();
+}
+
+void initial()async {
+  logindata=await SharedPreferences.getInstance();
+  setState(() {
+    email=logindata.getString('Email...')!;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +92,9 @@ class HomeScreen extends State<HomeBody> {
                   title: Text("Log Out"),
                   leading: Icon(Icons.logout),
                   onTap: (){
+                    logindata.setBool('login', true);
                     Navigator.of(context).pop();
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                    Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context)=>LoginPage()));
                   },
                 )
               ]

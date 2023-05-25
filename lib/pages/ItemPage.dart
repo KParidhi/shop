@@ -57,7 +57,7 @@ class ItemPage extends StatelessWidget{
              ),
            ) ,
     ],),
-        bottomNavigationBar:ItemBottomNavBar(Item.quantity.toString()) ,
+        bottomNavigationBar:ItemBottomNavBar(Item.price.toString()) ,
           );
   }
 }

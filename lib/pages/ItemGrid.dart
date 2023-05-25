@@ -52,7 +52,7 @@ class ItemGridState extends State<ItemGrid> {
             .value;
         loadedItems.add(CategoryItem(id: item.key,
           name: item.value['name'],
-          quantity: item.value['quantity'],
+          price: item.value['price'],
           category: category,
           image: item.value['image'],
         ));
@@ -153,7 +153,7 @@ class ItemGridState extends State<ItemGrid> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("\u{20B9}${Items[index].quantity.toString()}",
+                                  Text("\u{20B9}${Items[index].price.toString()}",
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,

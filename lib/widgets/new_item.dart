@@ -32,7 +32,7 @@ class _NewItemState extends State<NewItem>
 {
   final _formKey = GlobalKey<FormState>();
   var _enteredName=" ";
-  var _enteredQuantity=1;
+  var _enteredprice=   100  ;                                       //Text('\u{20B9}${your amount}')
   var _selectedCategory= categories[Categories.books]!;
   var _isSending=false;
   void _saveItem() async {
@@ -48,7 +48,7 @@ class _NewItemState extends State<NewItem>
       },
         body: json.encode({
           'name':_enteredName,
-          'quantity': _enteredQuantity,
+          'price': _enteredprice,
           'category': _selectedCategory.title,
           'image': imgUrl,
 
@@ -63,7 +63,7 @@ class _NewItemState extends State<NewItem>
       }
       Navigator.of(context).pop(CategoryItem(id:resData['name'],
       name: _enteredName,
-          quantity: _enteredQuantity,
+          price: _enteredprice,
         category: _selectedCategory,
         image: imgUrl,
 
@@ -127,7 +127,7 @@ class _NewItemState extends State<NewItem>
                           Expanded(child:
                           TextFormField(
                             decoration: InputDecoration(
-                              label:Text("Quantity"),
+                              label:Text("price: \u{20B9} "),
                             ),
                             keyboardType:TextInputType.number,
                             initialValue:"1" ,
@@ -136,12 +136,12 @@ class _NewItemState extends State<NewItem>
                                   value.isEmpty ||
                                   int.tryParse(value)==null ||
                                   int.tryParse(value)!<=0){
-                                return "must be a valid positive number ";
+                                return "must be a valid price in rupees ";
                               }
                               return null;
                             },
                             onSaved: (value){
-                              _enteredQuantity=int.parse(value!);
+                              _enteredprice=int.parse(value!);
                             },
                           ),
                           ),

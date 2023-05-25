@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/ItemPage.dart';
+import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:home/services/add_product.dart';
@@ -51,7 +52,7 @@ theme: ThemeData(
 
       routes: {
   '/' // :(ctx)=>ProductsScreen(),
-      :(context)=>HomePage(),
+      :(context)=>LoginPage(),
    "cartPage":(context)=>CartPage(),
   //"itemPage":(context)=>ItemPage(),
    "displayItems" : (context)=>DisplayItems(),
