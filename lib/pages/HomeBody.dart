@@ -161,9 +161,9 @@ class HomeScreen extends State<HomeBody> {
                             ),
                           ),
                         ),
-                        ItemsWidget(),
+                        //ItemsWidget(),
                        
-                        //ItemGrid(),
+                        ItemGrid(),
                       ]
                   ),
                 ),
