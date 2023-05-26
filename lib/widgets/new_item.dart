@@ -35,6 +35,7 @@ class _NewItemState extends State<NewItem>
   var _enteredprice=   100  ;                                       //Text('\u{20B9}${your amount}')
   var _selectedCategory= categories[Categories.books]!;
   var _isSending=false;
+
   void _saveItem() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();

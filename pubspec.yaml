@@ -48,6 +48,7 @@ dependencies:
   google_sign_in: ^6.1.0
   cloud_firestore: ^4.5.1
   uuid:
+  fluttertoast: ^8.2.2
   images_picker:
   flutter_riverpod:
   http: ^0.13.6

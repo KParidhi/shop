@@ -1,8 +1,10 @@
 import 'dart:async';
-import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home/pages/HomePage.dart';
+import 'package:home/pages/LoginPage.dart';
+import 'package:home/pages/SignUpPage.dart';
 class splash extends StatefulWidget{
   @override
   State<splash> createState()=>splashState();
@@ -11,9 +13,9 @@ class splashState extends State<splash> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement((context) as BuildContext,
-      MaterialPageRoute(builder: (context) => HomePage()),);
+      MaterialPageRoute(builder: (context) => LoginPage()),);
     },
     );
   }
@@ -22,20 +24,20 @@ class splashState extends State<splash> {
   Widget build(BuildContext context){
 
   return Scaffold(
+    backgroundColor: Colors.orange,
     body: Container(
-    color: Colors.blue,
       child: Center(
-        child: Text("hii",
+        child: Text("hii!",
             style: TextStyle(
-              fontSize: 40,
+              fontSize: 60,
               fontWeight: FontWeight.w700,
               color: Colors.white,
             )
 
         ),
       ),
-
     )
+
   );
   }
 }

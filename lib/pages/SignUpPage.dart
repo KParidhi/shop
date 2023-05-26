@@ -31,11 +31,13 @@ class _SignUpPageState extends State<SignUpPage>{
           child: Column(
             mainAxisAlignment:MainAxisAlignment.center ,
             children:[
-              Text("Sign Up",
+              Text("Sign Up Page",
                 style: TextStyle(
                   fontSize:35,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline
+
                 ),),
 
               //   Padding(
@@ -76,7 +78,8 @@ class _SignUpPageState extends State<SignUpPage>{
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
-                            fontWeight:FontWeight.bold ),
+                            fontWeight:FontWeight.bold,
+                        decoration: TextDecoration.underline),
                       ),
                     )
                   ],),
