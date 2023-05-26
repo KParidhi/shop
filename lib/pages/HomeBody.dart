@@ -107,92 +107,98 @@ void initial()async {
           )
       ),
       body:
-      ListView(
+     Column(
           children: [
-            HomeAppBar(),
-            Expanded(
-              child: Container(
-                height: 5000,
-                padding: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  color: Color(0xFFEDECF2),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(35),
-                    topRight: Radius.circular(35),
-                  ),
-                ),
-
-                  child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 15),
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-
-                          child: Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 5),
-                                  height: 60,
-                                  width: 100,
-                                  child: TextFormField(
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Search here ...",
-                                      )
-                                  ),
-
-                                ),
-
-                                Spacer(),
-                                Icon(Icons.camera_alt,
-                                  size: 27,
-                                  color: Colors.orange,
-                                )
-                              ]),
-
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: 10),
-                          margin: EdgeInsets.symmetric(
-                            vertical: 20,
-                            horizontal: 10,),
-
-
-                          child: Text("Categories",
-                            style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold,
-                              color: Colors.orange,),
-                          ),
-                        ),
-                        CategoriesWidget(),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
-                          child: Text(
-                            "Latest items",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.orange,
+                // Container(
+                //   child: ListView(
+                //     shrinkWrap: true,
+                //       physics: NeverScrollableScrollPhysics(),
+                //       children: [
+                        HomeAppBar(),
+                        // Expanded(
+                        //   child:
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEDECF2),
                             ),
-                          ),
-                        ),
-                        //ItemsWidget(),
-                       
-                        ItemGrid(),
-                      ]
-                  ),
-                ),
-            ),
 
-          ]
-      ),);
+                              child: Column(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.symmetric(horizontal: 15),
+                                      padding: EdgeInsets.symmetric(horizontal: 10),
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+
+                                      child: Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(left: 5),
+                                              height: 60,
+                                              width: 100,
+                                              child: TextFormField(
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText: "Search here ...",
+                                                  )
+                                              ),
+
+                                            ),
+
+                                            Spacer(),
+                                            Icon(Icons.camera_alt,
+                                              size: 27,
+                                              color: Colors.orange,
+                                            )
+                                          ]),
+
+                                    ),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.only(left: 10),
+                                      margin: EdgeInsets.symmetric(
+                                        vertical: 20,
+                                        horizontal: 10,),
+
+
+                                      child: Text("Categories",
+                                        style: TextStyle(
+                                          fontSize: 25, fontWeight: FontWeight.bold,
+                                          color: Colors.orange,),
+                                      ),
+                                    ),
+                                    CategoriesWidget(),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      margin: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 10),
+                                      child: Text(
+                                        "Latest items",
+                                        style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.orange,
+                                        ),
+                                      ),
+                                    ),
+                                    //ItemsWidget(),
+
+                                    // ItemGrid(),
+                                  ]
+                              ),
+                            ),
+
+            //GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
+              ItemGrid() ,
+
+
+
+
+])
+                          );
   }
 }

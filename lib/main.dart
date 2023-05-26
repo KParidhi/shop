@@ -10,6 +10,7 @@ import 'package:home/pages/ItemPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/pages/splash.dart';
 import 'package:home/services/add_product.dart';
 import 'package:home/services/products.dart';
 import 'package:home/widgets/CartItemSamples.dart';
@@ -52,7 +53,7 @@ theme: ThemeData(
 
       routes: {
   '/' // :(ctx)=>ProductsScreen(),
-      :(context)=>LoginPage(),
+      :(context)=>splash(),
    "cartPage":(context)=>CartPage(),
   //"itemPage":(context)=>ItemPage(),
    "displayItems" : (context)=>DisplayItems(),

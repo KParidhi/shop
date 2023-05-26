@@ -79,99 +79,99 @@ class ItemGridState extends State<ItemGrid> {
     if (Items.isNotEmpty) {
       content =
           Center(
-            child: Expanded(
-              child: GridView.builder(
-              itemCount: Items.length,
-              padding: const EdgeInsets.all(8),
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 0.57,),
+                child: GridView.builder(
+                itemCount: Items.length,
+                padding: const EdgeInsets.all(8),
 
-              itemBuilder: (BuildContext context, int index) {
-                return
-                    Container(
+                   physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 0.57,),
 
-                      padding: EdgeInsets.only(left: 15, right: 15, top: 10),
-                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+                itemBuilder: (BuildContext context, int index) {
+                  return
+                      Container(
 
-                      ),
+                        padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
 
-                        child: Column(
-                          children: [
-                            // Container(
-                            //   height: 50,
-                            //   width: 150,
-                              // alignment: Alignment.topRight,
-                              // child:
-                              // IconButton(
-                              //   icon: Icon(Icons.favorite_border, color: Colors.red,),
-                              //   onPressed: () {},
-                              // ),
-                            //),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ItemPage(Items[index],index)),
-                                );
-                              },
-                              child: Container(
-                                margin: EdgeInsets.all(8),
-                                child: CachedNetworkImage(
-                                  imageUrl: Items[index].image.toString(),
-                                  fit: BoxFit.fitHeight,
-                                  placeholder: (context,
-                                      url) => const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                                ),
-                                height: 120,
-                                width: 120,
-
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(bottom: 8),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                Items[index].name, style: TextStyle(fontSize: 18,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("\u{20B9}${Items[index].price.toString()}",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.orange,
-                                    ),),
-                                  Icon(Icons.shopping_cart_checkout,
-                                    color: Colors.orange,
-                                  )
-                                ],
-                              ),)
-                          ],
                         ),
-                      );
+
+                          child: Column(
+                            children: [
+                              // Container(
+                              //   height: 50,
+                              //   width: 150,
+                                // alignment: Alignment.topRight,
+                                // child:
+                                // IconButton(
+                                //   icon: Icon(Icons.favorite_border, color: Colors.red,),
+                                //   onPressed: () {},
+                                // ),
+                              //),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => ItemPage(Items[index],index)),
+                                  );
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(8),
+                                  child: CachedNetworkImage(
+                                    imageUrl: Items[index].image.toString(),
+                                    fit: BoxFit.fitHeight,
+                                    placeholder: (context,
+                                        url) => const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                  ),
+                                  height: 120,
+                                  width: 120,
+
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 8),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  Items[index].name, style: TextStyle(fontSize: 18,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                ),
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("\u{20B9}${Items[index].price.toString()}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.orange,
+                                      ),),
+                                    Icon(Icons.shopping_cart_checkout,
+                                      color: Colors.orange,
+                                    )
+                                  ],
+                                ),)
+                            ],
+                          ),
+                        );
 
 
-              }
+                }
       ),
-            ),
+
           );
     }
     if(_error!=null){

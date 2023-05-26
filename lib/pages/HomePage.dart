@@ -25,7 +25,8 @@ class _HomePageState extends State<HomePage> {
 
 
 
-      body:pagesData[selectedItem],
+      body:
+        pagesData[selectedItem],
 
       // pagesdata[selectedItem],
 

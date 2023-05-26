@@ -2,6 +2,7 @@ import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/pages/forgotPasswordPage.dart';
 import 'package:home/services/Auth_Service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class LoginPage extends StatefulWidget{
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage>{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
     home:
       Scaffold(
       body: SingleChildScrollView(
@@ -57,6 +59,7 @@ class _LoginPageState extends State<LoginPage>{
                   fontSize:35,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline
                 ),),
               SizedBox(
                 height: 20,
@@ -99,7 +102,8 @@ class _LoginPageState extends State<LoginPage>{
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
-                          fontWeight:FontWeight.bold ),
+                          fontWeight:FontWeight.bold ,
+                      decoration: TextDecoration.underline),
                     ),
                   )
                 ],
@@ -107,52 +111,20 @@ class _LoginPageState extends State<LoginPage>{
               SizedBox(
                 height: 10,
               ),
-          TextButton(
-            onPressed: (){
-              showModalBottomSheet(context: context, builder: (context)=>Container(
-                padding: EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black)
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      child: Container(
-                padding: EdgeInsets.all(20),
-
-                        child: Row(
-                          children: [
-                            Icon(Icons.mail_outline_rounded,size:60),
-                            SizedBox(width: 10),
-                            Column(
-                                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('E-mail',style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                ),),
-                                Text('Reset via E-mail',style: TextStyle(
-                                  fontSize: 5,
-                                ),),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ));
-            },
-            child:
-              Text("Forgot Password",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight:FontWeight.bold ),
-              ),
-          )
+        //forget_Password_Button
+         GestureDetector(
+           child:Text(
+             "Forgot Password?",
+             style: TextStyle(
+               decoration: TextDecoration.underline,
+                 color: Colors.white,
+               fontSize: 20,
+             ),
+           ),
+           onTap: ()=>Navigator.of(context).push(MaterialPageRoute(
+               builder: (context)=>ForgotPasswordPage(),
+           )),
+         )
 
 
 
@@ -164,6 +136,8 @@ class _LoginPageState extends State<LoginPage>{
     );
 
   }
+
+
   Widget colorButton(){
     return InkWell(
       onTap: () async {
@@ -294,6 +268,7 @@ void check_if_already_login() async {
   }
 }
 }
+
 
 
 

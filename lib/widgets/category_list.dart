@@ -49,7 +49,7 @@ class _CategoryListState extends State<CategoryList> {
           image: item.value['image'],
         ));
       }
-      //print(response.body);
+      print(response.body);
       setState(() {
         _categoryItems= loadedItems;
         _isLoading=false;
@@ -60,7 +60,7 @@ class _CategoryListState extends State<CategoryList> {
         _error="Something went wrong! Please try again later.";
       });
     }
-    //throw Exception("AN erroe occured!");
+    //throw Exception("AN error occured!");
 
   }
   void _addItem() async {
