@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:home/data/categories.dart';
 import 'package:home/models/category_item.dart';
+import 'package:home/pages/ItemForm.dart';
 import 'package:home/widgets/new_item.dart';
 import 'package:http/http.dart' as http;
 
@@ -67,7 +68,7 @@ class _CategoryListState extends State<CategoryList> {
 
 final newItem =
     await Navigator.of(context).push<CategoryItem>(
-        MaterialPageRoute(builder: (ctx)=>NewItem()
+        MaterialPageRoute(builder: (ctx)=>ItemForm()
         ));
     loadItems();
 if(newItem==null){

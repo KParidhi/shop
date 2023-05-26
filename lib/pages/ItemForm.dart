@@ -7,187 +7,205 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:home/services/camera.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:home/services/firebase_services.dart';
 import 'dart:core';
 
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(MaterialApp(title: "API", home: ItemForm()));
-}
 
-class ItemForm extends StatefulWidget {
+class ItemForm extends StatefulWidget{
   @override
-  State<StatefulWidget> createState() {
-    return page();
-    //throw UnimplementedError();
-  }
+  State<ItemForm> createState() => _ItemFormState();
 }
 
-class page extends State<ItemForm> {
+class _ItemFormState extends State<ItemForm> {
+  //const ProfileScreen({Key? key}): super(key: key);
+  String? profilePic;
 
-  String name = "",col ="",price="";
+  String name = "",desc ="",price="";
+  String dropdownValue = 'Books';
+  String? imgUrl="";
+  bool _isSaving=false;
 
   CollectionReference OurShop = FirebaseFirestore.instance.collection("item");
-  String? imgUrl=""; //for storing image in firestore
-
- File? img;//initial image
-
- //String selectedValue= "";//Selected value for dropdown(for choosing category)
-// List<String> categories =<String>['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-  String dropdownValue = 'Books';
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            margin: EdgeInsets.all(30.0),
-            child: Column(children: [
-            Expanded(
-              child:Container(
+        body: SafeArea(
 
-                width:300,
-                decoration:BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.redAccent)
-                ),
-
-                child: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Center(
                   child: Column(
-                    children:[
-                     // img==null? Center(child: Text("select image")):Image.file?(img),
+                      children: [
+                        SizedBox(height: 100,),
+                        Text("Add Item", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold,),),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: ()async{
+                              ImagePicker image = ImagePicker();
+                              XFile? file = await image.pickImage(
+                                  source: ImageSource.gallery);
 
+                              if(file != null)
+                              {
+                                setState(() {
+                                  profilePic = file.path;
+                                });
+                              }
+                              // imgUrl =await FirebaseServices.getImage(file);
 
-                FloatingActionButton(
-                  backgroundColor: Colors.orange,
-                    child: Icon(Icons.image,color: Colors.white,),
-                    onPressed: ()async {
-                      ImagePicker image = ImagePicker();
-                      XFile? file = await image.pickImage(
-                          source: ImageSource.gallery);
-                      //print ('${file?.path}');
-                      setState(() {
-                        if (file != null) {
-                          img = File(file.path);
-                        }
-                      });
-                      ImageInput();
+                            },
+                            child: Container(
+                              child: profilePic==null? CircleAvatar(
+                                backgroundColor:Colors.deepOrangeAccent,
+                                radius: 70,
+                                child: Image.asset('images/add_pic.png', height: 80,width: 80),
 
+                              ):
+                              CircleAvatar(
+                                radius: 70,
+                                foregroundImage: FileImage(File(profilePic!)),
+                              ),
+                            ),
+                          ),
 
+                        ),
+                        SizedBox(height: 20,),
 
-                      //firebase_services me iska code hai
-                      imgUrl =await FirebaseServices.getImage(file);
-                      print(imgUrl);
-                    }),
+                        TextFormField(
+                          onChanged: (value){
+                            name = value;},
+                          decoration: InputDecoration(
 
-              ]),),),),
-              TextField(
-                  onChanged: (value){
-                      name = value;},
-                      decoration: InputDecoration(
+                            labelText: 'Product Name',
+                            hintText: 'enter name',
+                            prefixIcon: Icon(Icons.drive_file_rename_outline),
 
-                      labelText: 'Product Name',
-                       hintText: 'enter name',
-                        prefixIcon: Icon(Icons.drive_file_rename_outline),
+                            border: OutlineInputBorder(),),
 
-                         border: OutlineInputBorder()
-        ),
-    ),
-              TextField(
-                  onChanged: (value1){
-                    price = value1;
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
 
-                  },
-                  decoration: InputDecoration(
+                        ),
+                        SizedBox(height: 20,),
+                        TextFormField(
+                          onChanged: (value1){
+                            price = value1;
 
-                  labelText: 'Product Price',
-                  hintText: 'enter Price',
-                  prefixIcon: Icon(Icons.money),
+                          },
+                          decoration: InputDecoration(
 
-                  border: OutlineInputBorder()
-              ),),
-              SizedBox(
-                height: 16,
+                              labelText: 'Product Price',
+                              hintText: 'enter Price',
+                              prefixIcon: Icon(Icons.money),
+
+                              border: OutlineInputBorder()
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        DropdownButton<String>(
+                          // Step 3.
+                          value: dropdownValue,
+                          isExpanded:true,
+                          borderRadius: BorderRadius.circular(20),
+                          //border: Border.all(color: Colors.redAccent),
+                          // Step 4.
+                          items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            );
+                          }).toList(),
+                          // Step 5.
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue = newValue!;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 20,),
+
+                        TextFormField(
+
+                          onChanged: (value3){
+                            desc = value3;
+                          },
+
+                          decoration: InputDecoration(
+
+                              labelText: 'Product Description',
+                              hintText: 'enter description(Short)',
+                              prefixIcon: Icon(Icons.description),
+
+                              border: OutlineInputBorder()
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orange
+                          ),
+
+                          onPressed: () {
+                            if(_formKey.currentState!.validate()){
+                              SystemChannels.textInput.invokeMapMethod('TextInput.hide');
+                              profilePic==null?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select a Picture')))
+                                  : saveInfo();
+                            }
+                          },
+                          child: Text("Add Item"),)
+                      ])
               ),
-
-              DropdownButton<String>(
-                // Step 3.
-                value: dropdownValue,
-                isExpanded:true,
-                  borderRadius: BorderRadius.circular(20),
-                  //border: Border.all(color: Colors.redAccent),
-                // Step 4.
-                items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  );
-                }).toList(),
-                // Step 5.
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue!;
-                  });
-                },
-              ),
-
-              TextField(
-
-                  onChanged: (value3){
-                    col = value3;
-                  },
-
-                decoration: InputDecoration(
-
-                  labelText: 'Product color',
-                  hintText: 'enter colour',
-                  prefixIcon: Icon(Icons.color_lens_outlined),
-
-                  border: OutlineInputBorder()
-              ),
-                  ),
-              SizedBox(
-                height: 16,
-              ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange
+            ),
           ),
-        child: Text("click"),
-
-    //yahan pe data add ho rha hai firestore me
-    onPressed:() async {
-    await OurShop.add({ 'ProductName': name,
-      'ProductPrice' : price,
-      'ProductColor': col,
-      'Category': dropdownValue,
-      'image': imgUrl,
-    } );
-    //_reference.add(dataToSend);
-
-    }
-    )
-            ]),),);
-
-
-
-  }
-}
-
-class cartpage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Cart"),
-      ),
+        )
     );
   }
-}
 
+  saveInfo() async {
+    FirebaseServices.getImage(File(profilePic!)).whenComplete(() async {
+      imgUrl=await FirebaseServices.getImage(File(profilePic!));
+      Map<String, dynamic> data={ 'ProductName': name,
+        'ProductPrice' : price,
+        'ProductDesc': desc,
+        'Category': dropdownValue,
+        'image': imgUrl,
+      };
+      OurShop.add(data);
+
+    });
+
+  }
+}
 
 

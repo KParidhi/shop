@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:home/services/firebase_services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -11,8 +13,13 @@ class ProfileScreen extends StatefulWidget{
 class _ProfileScreenState extends State<ProfileScreen> {
    //const ProfileScreen({Key? key}): super(key: key);
    String? profilePic;
-   String name = "",col ="",price="";
+
+   String name = "",desc ="",price="";
    String dropdownValue = 'Books';
+   String? imgUrl="";
+   bool _isSaving=false;
+
+   CollectionReference OurShop = FirebaseFirestore.instance.collection("item");
    final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               profilePic = file.path;
                             });
                          }
+                        // imgUrl =await FirebaseServices.getImage(file);
+
                  },
                      child: Container(
                         child: profilePic==null? CircleAvatar(
@@ -55,12 +64,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                      ),
                    ),
+
                  ),
                       SizedBox(height: 20,),
 
                       TextFormField(
-                        // onChanged: (value){
-                            //name = value;},
+                         onChanged: (value){
+                            name = value;},
                          decoration: InputDecoration(
 
                              labelText: 'Product Name',
@@ -79,10 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                      SizedBox(height: 20,),
                      TextFormField(
-                       // onChanged: (value1){
-                       //   price = value1;
-                       //
-                       // },
+                        onChanged: (value1){
+                        price = value1;
+
+                        },
                        decoration: InputDecoration(
 
                            labelText: 'Product Price',
@@ -131,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                      TextFormField(
 
                        onChanged: (value3){
-                         col = value3;
+                         desc = value3;
                        },
 
                        decoration: InputDecoration(
@@ -156,6 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                      style: ElevatedButton.styleFrom(
                          backgroundColor: Colors.orange
                      ),
+
                      onPressed: () {
                        if(_formKey.currentState!.validate()){
                          SystemChannels.textInput.invokeMapMethod('TextInput.hide');
@@ -170,7 +181,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
          ),
        )
     );
-  }}
+  }
 
-saveInfo() {
+saveInfo() async {
+  FirebaseServices.getImage(File(profilePic!)).whenComplete(() async {
+    imgUrl=await FirebaseServices.getImage(File(profilePic!));
+     Map<String, dynamic> data={ 'ProductName': name,
+      'ProductPrice' : price,
+      'ProductColor': desc,
+      'Category': dropdownValue,
+      'image': imgUrl,
+    };
+      OurShop.add(data);
+
+ });
+
+}
 }

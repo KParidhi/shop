@@ -27,7 +27,7 @@ class CategoriesWidget extends StatelessWidget{
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ItemGrid()),
+                    MaterialPageRoute(builder: (context) => CategoryItem("Books")),
                   );
                   },
        child:  Image.asset("images/book.jpg",width:40,height: 40,),),

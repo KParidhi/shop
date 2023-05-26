@@ -16,16 +16,16 @@ class FirebaseServices{
 }
   static Future<String?> getImage(file) async{
     String imgUrl="";
+    try{
    String uniqueName=DateTime.now().millisecondsSinceEpoch.toString();
 
    Reference referenceRoot= FirebaseStorage.instance.ref();
    Reference refImg= referenceRoot.child('image');
    Reference imgToUpload= refImg.child(uniqueName);
-
-   try{
-     await imgToUpload.putFile(File(file!.path));
-     imgUrl= await imgToUpload.getDownloadURL();
-
+   UploadTask uploadTask= imgToUpload.putFile(File(file!.path));
+   await uploadTask.whenComplete(() async {
+     imgUrl = await imgToUpload.getDownloadURL();
+   });
      return imgUrl ;
 
    }
