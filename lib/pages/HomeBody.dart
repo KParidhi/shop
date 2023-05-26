@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
+import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
@@ -82,7 +83,11 @@ void initial()async {
                 ),
                 ListTile(
                     title: Text("Settings"),
-                    leading: Icon(Icons.settings)
+                    leading: Icon(Icons.settings),
+                    onTap: (){
+                      Navigator.of(context).pop();
+                      Navigator.push(context,MaterialPageRoute(builder:(context) => ProfileScreen()));
+      }
                 ),
                 ListTile(
                     title: Text("My products"),
