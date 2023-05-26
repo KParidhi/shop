@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:home/models/category_item.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/services/firebase_services.dart';
 import 'package:get/get.dart';
@@ -53,6 +54,7 @@ class CategoryItems extends State<CategoryItem> {
             name: data['ProductName'],
             price: data['ProductPrice'],
             imageUrl: data['image'],
+            desc:data['ProductDesc']
 
             );
             return
@@ -79,11 +81,11 @@ class CategoryItems extends State<CategoryItem> {
             InkWell(
             onTap: (){
             //Navigator.pushNamed(context, "itemPage");
-            //Get.to(()=> ItemPage(product.name));
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => ItemPage(product.name,product.imageUrl,product.price)),
-            //     );
+            //Get.to(()=> ItemPage(product.name ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ItemPage(name:product.name,price: product.price,imageUrl:product.imageUrl,desc:product.desc, )),
+                );
             },
             child:Container(
             margin:EdgeInsets.all(8),

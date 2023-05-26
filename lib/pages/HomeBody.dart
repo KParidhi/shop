@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
+import 'package:home/pages/display_item.dart';
 import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:home/services/Auth_Service.dart';
-import '../widgets/ItemsWidget.dart';
+
+
 import 'package:home/widgets/HomeAppBar.dart';
-import 'package:home/pages/ItemGrid.dart';
+
 
 void main(){runApp(
     MaterialApp(
@@ -193,7 +193,7 @@ void initial()async {
                             ),
 
             //GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
-              ItemGrid() ,
+              DisplayItems() ,
 
 
 

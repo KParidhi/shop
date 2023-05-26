@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:home/data/categories.dart';
 import 'package:home/models/category_item.dart';
 import 'package:home/pages/ItemForm.dart';
-import 'package:home/widgets/new_item.dart';
+
 import 'package:http/http.dart' as http;
 
 class CategoryList extends StatefulWidget {

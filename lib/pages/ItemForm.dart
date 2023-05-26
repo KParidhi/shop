@@ -33,6 +33,10 @@ class _ItemFormState extends State<ItemForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Add a new item'),
+          backgroundColor: Colors.orange,
+        ),
         body: SafeArea(
 
           child: SingleChildScrollView(

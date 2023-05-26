@@ -4,19 +4,26 @@ import 'package:home/widgets/ItemAppBar.dart';
 import 'package:home/widgets/ItemBottomNavBar.dart';
 import 'package:home/models/category_item.dart';
 class ItemPage extends StatelessWidget{
-  final CategoryItem Item;
-  int index;
+  // final CategoryItem Item;
+  // int index;
+  final String name;
+  final String price;
+  final String imageUrl;
+  final String desc;
 
-  ItemPage(this.Item, this.index);
+  ItemPage({required this.name, required this.price, required this.imageUrl,  required this.desc});
+
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor:Color(0xFFEDECF2),
       body: ListView(
         children: [
-          ItemAppBar(Item.name),
+          ItemAppBar(name),
           Padding(padding: EdgeInsets.all(16),
-              child:Image.network(Item.image.toString(),
+              child:Image.network(imageUrl.toString(),
               height: 300,),
           ),
         Arc(
@@ -35,7 +42,7 @@ class ItemPage extends StatelessWidget{
                     bottom: 15,),
                   child: Row(
                     children: [
-                      Text(Item.name,   //name
+                      Text(name,   //name
                       style: TextStyle(
                         fontSize: 28,
                         color: Colors.orange,
@@ -44,7 +51,7 @@ class ItemPage extends StatelessWidget{
                     ],
                   ),),
                   Padding(padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Text("description of product(lengthy)",
+                    child: Text(desc,
                       textAlign:TextAlign.justify ,
                     style: TextStyle(
                       fontSize: 17,
@@ -57,7 +64,7 @@ class ItemPage extends StatelessWidget{
              ),
            ) ,
     ],),
-        bottomNavigationBar:ItemBottomNavBar(Item.price.toString()) ,
+        bottomNavigationBar:ItemBottomNavBar(price.toString()) ,
           );
   }
 }

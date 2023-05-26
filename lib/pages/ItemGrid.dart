@@ -117,10 +117,10 @@ class ItemGridState extends State<ItemGrid> {
                               //),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => ItemPage(Items[index],index)),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(builder: (context) => //ItemPage(Items[index],index)),
+                                  //);
                                 },
                                 child: Container(
                                   margin: EdgeInsets.all(8),

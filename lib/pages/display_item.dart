@@ -14,8 +14,9 @@ class Product {
   final String name;
   final String price;
   final String imageUrl;
+  final String desc;
 
-  Product({required this.name, required this.price, required this.imageUrl});
+  Product({required this.name, required this.price, required this.imageUrl, required this.desc});
 }
 
 class Next extends State<DisplayItems>{
@@ -59,6 +60,7 @@ class Next extends State<DisplayItems>{
                 name: data['ProductName'],
                 price: data['ProductPrice'],
                 imageUrl: data['image'],
+                desc: data['ProductDesc']
               );
               return
                 Expanded(child:
