@@ -7,8 +7,8 @@ class UserProductsNotifier extends StateNotifier<List<Product>> {
   UserProductsNotifier() : super(const []);
 
   void addProduct(String title) {
-    final newPlace = Product(title: title);
-    state = [newPlace, ...state];
+    final newProduct = Product(title: title);
+    state = [newProduct, ...state];
   }
 }
 

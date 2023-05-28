@@ -28,7 +28,6 @@ class Next extends State<DisplayItems>{
   Widget build(BuildContext context) {
      return Scaffold(
       body: Center(
-      child: SingleChildScrollView(
       child: StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -44,6 +43,9 @@ class Next extends State<DisplayItems>{
           GridView.builder(
             itemCount: snapshot.data!.docs.length,
             padding: const EdgeInsets.all(8),
+
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
 
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -131,7 +133,7 @@ class Next extends State<DisplayItems>{
                 ),);}
           );}
       ),
-      ),),)
+      ),)
      ;}}
 
     /*InkWell(

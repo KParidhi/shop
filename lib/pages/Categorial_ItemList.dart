@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:home/models/category_item.dart';
+import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/services/firebase_services.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class CategoryItems extends State<CategoryItem> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+        backgroundColor: Colors.grey.shade100,
         body: StreamBuilder(
             stream: FirebaseServices.getProducts(widget.categories),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot)
@@ -60,7 +62,7 @@ class CategoryItems extends State<CategoryItem> {
             return
             Expanded(child:
             Container(
-            padding: EdgeInsets.only(left:15,right: 15,top: 10),
+            padding: EdgeInsets.only(left:10,right: 10,top: 20),
             margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
             decoration: BoxDecoration(
             color: Colors.white,
@@ -68,16 +70,16 @@ class CategoryItems extends State<CategoryItem> {
             ),
             child: Column(
             children: [
-            Container(
-            height: 50,
-            width: 150,
-            alignment: Alignment.topRight,
-            child:
-            IconButton(
-            icon:Icon(Icons.favorite_border,color: Colors.red,),
-            onPressed: () { },
-            ),
-            ),
+            // Container(
+            // height: 50,
+            // width: 150,
+            // alignment: Alignment.topRight,
+            // child:
+            // IconButton(
+            // icon:Icon(Icons.favorite_border,color: Colors.red,),
+            // onPressed: () { },
+            // ),
+            // ),
             InkWell(
             onTap: (){
             //Navigator.pushNamed(context, "itemPage");
@@ -96,15 +98,16 @@ class CategoryItems extends State<CategoryItem> {
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            height: 120,
-            width: 120,
+            height: 130,
+            width: 130,
 
             ),
             ),
+            SizedBox(height: 50,),
             Container(
             padding: EdgeInsets.only(bottom: 8),
             alignment:Alignment.centerLeft,
-            child:Text(product.name,style:TextStyle(fontSize:18,
+            child:Text(product.name,style:TextStyle(fontSize:20,
             color: Colors.orange,
             fontWeight:FontWeight.bold,
             ) ,
@@ -118,12 +121,18 @@ class CategoryItems extends State<CategoryItem> {
             children: [
             Text("\u{20B9}${product.price}",
             style:TextStyle(
-            fontSize: 15,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.orange,
             ) ,),
-            Icon(Icons.shopping_cart_checkout,
-            color:Colors.orange,
+            InkWell(
+              child: Icon(Icons.shopping_cart_checkout,
+              size: 30,
+              color:Colors.orange,
+              ),
+                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=>CartPage(),
+                )),
             )
             ],
             ),)
