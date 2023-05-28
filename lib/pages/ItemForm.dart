@@ -45,10 +45,10 @@ class _ItemFormState extends State<ItemForm> {
               child: Center(
                   child: Column(
                       children: [
-                        SizedBox(height: 30,),
-                        //Text("Add Item", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold,),),
+                        SizedBox(height: 100,),
+                        Text("Add Item", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold,),),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10,left: 8,right: 8,bottom: 15),
+                          padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: ()async{
                               ImagePicker image = ImagePicker();
@@ -67,50 +67,27 @@ class _ItemFormState extends State<ItemForm> {
                             child: Container(
                               child: profilePic==null? CircleAvatar(
                                 backgroundColor:Colors.deepOrangeAccent,
-                                radius: 90,
+                                radius: 70,
                                 child: Image.asset('images/add_pic.png', height: 80,width: 80),
 
                               ):
                               CircleAvatar(
-                                radius: 90,
+                                radius: 70,
                                 foregroundImage: FileImage(File(profilePic!)),
                               ),
                             ),
                           ),
 
                         ),
-                        Text("Pick an image from gallery....",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          color: Colors.orange),),
-                        SizedBox(height: 40,),
+                        SizedBox(height: 20,),
 
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          child:
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                           children:[
-                             TextFormField(
+                        TextFormField(
                           onChanged: (value){
                             name = value;},
                           decoration: InputDecoration(
 
                             labelText: 'Product Name',
-                            //hintText: 'enter name',
-                            focusedBorder:  OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1.5,
-                                  color: Colors.orange),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1,
-                                  color: Colors.orange),
-                            ),
+                            hintText: 'enter name',
                             prefixIcon: Icon(Icons.drive_file_rename_outline),
 
                             border: OutlineInputBorder(),),
@@ -129,26 +106,13 @@ class _ItemFormState extends State<ItemForm> {
                             price = value1;
 
                           },
-                          keyboardType: TextInputType.number,
-
                           decoration: InputDecoration(
 
                               labelText: 'Product Price',
-                              //hintText: 'enter Price',
-                              prefixIcon: Icon(Icons.currency_rupee),
+                              hintText: 'enter Price',
+                              prefixIcon: Icon(Icons.money),
 
-                            focusedBorder:  OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1.5,
-                                  color: Colors.orange),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1,
-                                  color: Colors.orange),
-                            ),
+                              border: OutlineInputBorder()
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -161,47 +125,30 @@ class _ItemFormState extends State<ItemForm> {
                           height: 20,
                         ),
 
-                Container(
-                  padding:EdgeInsets.only(left: 5,right: 5),
-                  child:
-                            DropdownButton<String>(
-                            // Step 3.
-                            value: dropdownValue,
-                            icon:Icon(Icons.arrow_drop_down,
-                            color: Colors.orange, 
-
-
-                            ),
-                            isExpanded:true,
-                            borderRadius: BorderRadius.circular(20),
-                            //border: Border.all(color: Colors.redAccent),
-                            // Step 4.
-                            items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              );
-                            }).toList(),
-                            // Step 5.
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownValue = newValue!;
-                              });
-                            },
-                          ),
-
-
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color:Colors.orange.shade300)
-                            //color: Colors.orange.shade300,
-                          ),
-                ),
-
+                        DropdownButton<String>(
+                          // Step 3.
+                          value: dropdownValue,
+                          isExpanded:true,
+                          borderRadius: BorderRadius.circular(20),
+                          //border: Border.all(color: Colors.redAccent),
+                          // Step 4.
+                          items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            );
+                          }).toList(),
+                          // Step 5.
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue = newValue!;
+                            });
+                          },
+                        ),
                         SizedBox(height: 20,),
 
                         TextFormField(
@@ -212,23 +159,11 @@ class _ItemFormState extends State<ItemForm> {
 
                           decoration: InputDecoration(
 
-                              labelText: 'Product Description (short)',
-                              //hintText: 'enter description(Short)',
-                              prefixIcon: Icon(Icons.description
-                              ),
+                              labelText: 'Product Description',
+                              hintText: 'enter description(Short)',
+                              prefixIcon: Icon(Icons.description),
 
-                            focusedBorder:  OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1.5,
-                                  color: Colors.orange),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  width: 1,
-                                  color: Colors.orange),
-                            ),
+                              border: OutlineInputBorder()
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -236,8 +171,6 @@ class _ItemFormState extends State<ItemForm> {
                             }
                             return null;
                           },
-                        ),
-                        ],),
                         ),
                         SizedBox(
                           height: 20,

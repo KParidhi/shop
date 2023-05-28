@@ -131,7 +131,8 @@ class Next extends State<DisplayItems>{
                     ],
                   ),
                 ),);}
-          );}
+          );
+      }
       ),
       ),)
      ;}}
