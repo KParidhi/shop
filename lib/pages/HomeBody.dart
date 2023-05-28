@@ -5,6 +5,7 @@ import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
+import 'package:home/widgets/search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -144,7 +145,13 @@ void initial()async {
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText: "Search here ...",
-                                                  )
+                                                  ),
+                                                onTap: (){
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(builder: (context) =>search()));
+                                                    },
+
+
                                               ),
 
                                             ),
