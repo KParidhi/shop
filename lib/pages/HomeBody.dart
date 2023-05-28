@@ -1,13 +1,11 @@
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
-import 'package:home/widgets/ItemGrid.dart';
+import 'package:home/widgets/search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -31,8 +29,7 @@ class HomeBody extends StatefulWidget{
 class HomeScreen extends State<HomeBody> {
 late SharedPreferences logindata;
 late String email;
-String imageUrl = " ";
-File? _selectedImage;
+
 @override
 void initState(){
   super.initState();
@@ -64,13 +61,11 @@ void initial()async {
                           height:180,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              // image: DecorationImage(
-                              //   image: NetworkImage("https://th.bing.com/th/id/OIP.1dzpxcuf7LgyKLgNtp6zhQHaFA?pid=ImgDet&rs=1"),
-                              //   fit:BoxFit.fill,
-                              // )
-                          ),
-
-
+                              image: DecorationImage(
+                                image: NetworkImage("https://th.bing.com/th/id/OIP.1dzpxcuf7LgyKLgNtp6zhQHaFA?pid=ImgDet&rs=1"),
+                                fit:BoxFit.fill,
+                              )
+                          )
                       ),
                       Text("Name",
                         style: TextStyle(fontSize: 25,
@@ -115,15 +110,14 @@ void initial()async {
       body:
      Column(
           children: [
-         //        Container(
-         //          child:
-         // ListView(
-         //            shrinkWrap: true,
-         //              physics: NeverScrollableScrollPhysics(),
-         //              children: [
+                // Container(
+                //   child: ListView(
+                //     shrinkWrap: true,
+                //       physics: NeverScrollableScrollPhysics(),
+                //       children: [
                         HomeAppBar(),
-                //          Expanded(
-                //           child:
+                        // Expanded(
+                        //   child:
                           Container(
                             padding: EdgeInsets.only(top: 10),
                             decoration: BoxDecoration(
@@ -151,7 +145,13 @@ void initial()async {
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText: "Search here ...",
-                                                  )
+                                                  ),
+                                                onTap: (){
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(builder: (context) =>search()));
+                                                    },
+
+
                                               ),
 
                                             ),
@@ -192,22 +192,20 @@ void initial()async {
                                         ),
                                       ),
                                     ),
-
                                     //ItemsWidget(),
 
-
-
+                                    // ItemGrid(),
                                   ]
                               ),
                             ),
 
             //GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
+              DisplayItems() ,
 
 
 
-            //ItemGrid(),
-            DisplayItems()
 
-        ])  );
+])
+                          );
   }
 }
