@@ -52,6 +52,7 @@ dependencies:
   images_picker:
   flutter_riverpod:
   http: ^0.13.6
+  flutter_session_manager: ^1.0.2
 
   firebase_storage: ^11.1.1
   cached_network_image: ^3.2.3

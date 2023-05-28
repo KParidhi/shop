@@ -45,8 +45,8 @@ class _ItemFormState extends State<ItemForm> {
               child: Center(
                   child: Column(
                       children: [
-                        SizedBox(height: 100,),
-                        Text("Add Item", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold,),),
+                        SizedBox(height: 50,),
+
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -185,6 +185,7 @@ class _ItemFormState extends State<ItemForm> {
                               SystemChannels.textInput.invokeMapMethod('TextInput.hide');
                               profilePic==null?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select a Picture')))
                                   : saveInfo();
+
                             }
                           },
                           child: Text("Add Item"),)
@@ -207,8 +208,11 @@ class _ItemFormState extends State<ItemForm> {
       };
       OurShop.add(data);
 
-    });
 
+    });
+    Navigator.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('You have successfully Added a product')));
   }
 }
 

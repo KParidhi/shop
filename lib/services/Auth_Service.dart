@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthClass{
+  static User? currentUser;
   FirebaseAuth auth= FirebaseAuth.instance;
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
@@ -17,6 +18,7 @@ class AuthClass{
   Future<void> googleSignIn( BuildContext context)
 
   async {
+
     try {
       GoogleSignInAccount? googleSignInAccount =await  _googleSignIn.signIn();
       if(googleSignInAccount!=null)
@@ -30,10 +32,13 @@ class AuthClass{
         try{
           UserCredential userCredential=
           await auth.signInWithCredential(credential);
+
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (builder)=>HomePage()) ,
                   (route) => false);
+
+          currentUser = auth.currentUser;
 
         }catch(e){
           final snackbar = SnackBar(content:Text(e.toString()));

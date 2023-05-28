@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:home/models/category_item.dart';
 import 'package:home/pages/display_item.dart';
 import 'package:home/services/firebase_services.dart';
-import 'package:get/get.dart';
-
 import 'ItemPage.dart';
 
 class CategoryItem  extends StatefulWidget{
@@ -88,42 +85,41 @@ class CategoryItems extends State<CategoryItem> {
                 );
             },
             child:Container(
-            margin:EdgeInsets.all(8),
-            child:CachedNetworkImage(
-
-            imageUrl: product.imageUrl,
-            fit: BoxFit.fitHeight,
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-            height: 120,
-            width: 120,
+                margin:EdgeInsets.all(8),
+                child:CachedNetworkImage(
+                    imageUrl: product.imageUrl,
+                    fit: BoxFit.fitHeight,
+                    placeholder: (context, url) => Transform.scale(scale: 0.5,
+                        child: const CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),),
+                height: 120,
+                width: 120,
 
             ),
             ),
             Container(
-            padding: EdgeInsets.only(bottom: 8),
-            alignment:Alignment.centerLeft,
-            child:Text(product.name,style:TextStyle(fontSize:18,
-            color: Colors.orange,
-            fontWeight:FontWeight.bold,
-            ) ,
+                padding: EdgeInsets.only(bottom: 8),
+                alignment:Alignment.centerLeft,
+                child:Text(product.name,style:TextStyle(fontSize:18,
+                color: Colors.orange,
+                fontWeight:FontWeight.bold,
+                ) ,
             ),
             ),
 
             Padding(
             padding: EdgeInsets.symmetric(vertical:10),
             child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-            Text("\u{20B9}${product.price}",
-            style:TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Colors.orange,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Text("\u{20B9}${product.price}",
+                style:TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.orange,
             ) ,),
-            Icon(Icons.shopping_cart_checkout,
-            color:Colors.orange,
+                Icon(Icons.shopping_cart_checkout,
+                color:Colors.orange,
             )
             ],
             ),)
