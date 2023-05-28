@@ -73,9 +73,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             name = value;},
                          decoration: InputDecoration(
 
-                             labelText: 'Product Name',
+                             labelText: 'Name',
                              hintText: 'enter name',
-                             prefixIcon: Icon(Icons.drive_file_rename_outline),
+                             prefixIcon: Icon(Icons.person),
 
                              border: OutlineInputBorder(),),
 
@@ -95,15 +95,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                        decoration: InputDecoration(
 
-                           labelText: 'Product Price',
-                           hintText: 'enter Price',
+                           labelText: 'Roll no.',
+                           hintText: 'Enter Roll no.',
                            prefixIcon: Icon(Icons.money),
 
                            border: OutlineInputBorder()
                        ),
                        validator: (value) {
-                         if (value == null || value.isEmpty) {
-                           return 'Please enter some text';
+                         if (value == null || value.isEmpty||value.trim().length<=1 ||
+                             value.trim().length>6) {
+                           return 'Enter Valid Roll No.';
                          }
                          return null;
                        },
@@ -112,30 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                        height: 20,
                      ),
 
-                     DropdownButton<String>(
-                       // Step 3.
-                       value: dropdownValue,
-                       isExpanded:true,
-                       borderRadius: BorderRadius.circular(20),
-                       //border: Border.all(color: Colors.redAccent),
-                       // Step 4.
-                       items: <String>[ 'Books', 'Stationary','Electronics', 'Daily Use','others...']
-                           .map<DropdownMenuItem<String>>((String value) {
-                         return DropdownMenuItem<String>(
-                           value: value,
-                           child: Text(
-                             value,
-                             style: TextStyle(fontSize: 15),
-                           ),
-                         );
-                       }).toList(),
-                       // Step 5.
-                       onChanged: (String? newValue) {
-                         setState(() {
-                           dropdownValue = newValue!;
-                         });
-                       },
-                     ),
+
                      SizedBox(height: 20,),
 
                      TextFormField(
@@ -146,15 +124,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                        decoration: InputDecoration(
 
-                           labelText: 'Product Description',
-                           hintText: 'enter description(Short)',
+                           labelText: 'Mobile no.',
+                           hintText: 'enter mobile no.',
                            prefixIcon: Icon(Icons.description),
 
                            border: OutlineInputBorder()
                        ),
                        validator: (value) {
-                         if (value == null || value.isEmpty) {
-                           return 'Please enter some text';
+                         if (value == null || value.isEmpty||value.trim().length!=10
+                             ) {
+                           return 'Enter a 10 digit mobile number';
                          }
                          return null;
                        },
@@ -174,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              : saveInfo();
                        }
                      },
-                     child: Text("Add Item"),)
+                     child: Text("Update Profile"),)
                    ])
              ),
            ),
