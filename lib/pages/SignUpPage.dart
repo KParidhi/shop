@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:home/services/Auth_Service.dart';
+
 class SignUpPage extends StatefulWidget{
   SignUpPage({super.key });
 
@@ -13,12 +17,16 @@ class _SignUpPageState extends State<SignUpPage>{
   firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
+
+
   bool circular =false;
   late AuthClass authClass;
   void asyncButtonItem() async {
     authClass = AuthClass();
     await authClass.googleSignIn(context);
   }
+
+
 
   @override
   Widget build(BuildContext context){
@@ -39,14 +47,16 @@ class _SignUpPageState extends State<SignUpPage>{
                   decoration: TextDecoration.underline
 
                 ),),
+              SizedBox(height: 20,),
 
               //   Padding(
               // padding: const EdgeInsets.only(top: 10),
               //     child: buttonItem("lib/images/googleIcon.png","continue with google",25,
-              //             )),
+              //)),
+
 
               Padding(
-                padding: const EdgeInsets.only(top: 70),
+                padding: const EdgeInsets.only(top: 40),
                 child: textItem("Email...",_emailController,false),
               ),
 
@@ -112,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage>{
                       (route) => false);
             }
             catch (e) {
-              final snackbar = SnackBar(content:Text("enter your registered e mail and password"));
+              final snackbar = SnackBar(content:Text("password must be atleast 6 digit long"));
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
               setState(() {
                 circular=false;

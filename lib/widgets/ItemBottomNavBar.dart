@@ -1,8 +1,15 @@
  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
- class ItemBottomNavBar extends StatelessWidget{
+import 'package:home/pages/CartPage.dart';
+ class ItemBottomNavBar extends StatefulWidget{
    String price;
    ItemBottomNavBar(this.price);
+
+  @override
+  State<ItemBottomNavBar> createState() => _ItemBottomNavBarState();
+}
+
+class _ItemBottomNavBarState extends State<ItemBottomNavBar> {
   @override
   Widget build(BuildContext context){
    return BottomAppBar(
@@ -24,17 +31,22 @@ import 'package:flutter/material.dart';
       child: Row(
        mainAxisAlignment:MainAxisAlignment.spaceBetween ,
        children: [
-        Text('\u{20B9}${price}',
+        Text('\u{20B9}${widget.price}',
         style: TextStyle(
          fontSize: 25,
          fontWeight: FontWeight.bold,
          color: Colors.orange
         ),),
-        ElevatedButton.icon(onPressed: (){},
+        ElevatedButton.icon(onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context)=>CartPage(),
+          ),);
+        },
          icon: Icon(CupertinoIcons.cart_badge_plus),
          label: Text("add to Cart",style: TextStyle(
           fontSize: 16,fontWeight: FontWeight.bold,
-         ),),
+         ),
+         ),
          style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.orange),
           padding: MaterialStateProperty.all(

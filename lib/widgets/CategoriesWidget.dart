@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:home/pages/Categorial_ItemList.dart';
-import 'package:home/pages/ItemGrid.dart';
-class CategoriesWidget extends StatelessWidget{
+
+
+class CategoriesWidget extends StatefulWidget{
+  @override
+  State<CategoriesWidget> createState() => _CategoriesWidgetState();
+}
+
+class _CategoriesWidgetState extends State<CategoriesWidget> {
   @override
   Widget build(BuildContext context)
   {
-    return
-     SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child:Row(
+    return Container(
+    // child:ListView(
+    //   physics: NeverScrollableScrollPhysics(),
+    //   shrinkWrap: true,
+    //     children:[
+     // SingleChildScrollView(
+     //  scrollDirection: Axis.horizontal,
+       child:
+      Row(
         mainAxisAlignment: MainAxisAlignment.start,
     children:[
         Container(
@@ -142,8 +153,11 @@ class CategoriesWidget extends StatelessWidget{
   ],
   ),
 
-  ),],),)
-  ;
+  ),
+    ],
+    )
+
+    );
 
 
 

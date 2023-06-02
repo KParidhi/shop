@@ -26,19 +26,20 @@ class ItemPage extends StatelessWidget{
               child:Image.network(imageUrl.toString(),
               height: 300,),
           ),
-        Arc(
-          edge: Edge.TOP,
-          arcType:ArcType.CONVEY,
-          height: 30,
-          child: Container(
+        // Arc(
+        //   edge: Edge.TOP,
+        //   arcType:ArcType.CONVEX,
+        //   height: 30,
+          //child:
+          Container(
             width: double.infinity,
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
                   Padding(padding: EdgeInsets.only(
-                    top:48,
+                    top:10,
                     bottom: 15,),
                   child: Row(
                     children: [
@@ -62,7 +63,7 @@ class ItemPage extends StatelessWidget{
                  ),
                 ),
              ),
-           ) ,
+
     ],),
         bottomNavigationBar:ItemBottomNavBar(price.toString()) ,
           );

@@ -1,6 +1,7 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/HomeBody.dart';
 import 'package:home/pages/ItemForm.dart';
@@ -22,8 +23,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-
-
 
       body:
         pagesData[selectedItem],
