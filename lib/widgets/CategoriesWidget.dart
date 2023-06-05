@@ -10,7 +10,7 @@ class CategoriesWidget extends StatefulWidget{
 class _CategoriesWidgetState extends State<CategoriesWidget> {
   @override
   Widget build(BuildContext context)
-  {
+    {
     return Container(
     // child:ListView(
     //   physics: NeverScrollableScrollPhysics(),

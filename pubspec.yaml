@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   camera:
-  image_picker: ^0.8.7+3
+
 
 
 
@@ -43,18 +43,22 @@ dependencies:
   clippy_flutter: ^2.0.0-nullsafety.1
   flutter_rating_bar: ^4.0.1
   google_fonts: ^4.0.3
-  firebase_auth: ^4.3.0
-  firebase_core: ^2.8.0
-  google_sign_in: ^6.1.0
+  firebase_auth: ^4.6.1
+  firebase_core:
+  firebase_storage:
+  google_sign_in:
   cloud_firestore: ^4.5.1
   uuid:
-  fluttertoast: ^8.2.2
-  images_picker:
-  flutter_riverpod:
-  http: ^0.13.6
-  flutter_session_manager: ^1.0.2
+  fluttertoast:
+  image_picker: ^0.8.7+5
+  image_cropper: ^4.0.1
+  flutter_launcher_icons: ^0.9.2
+  transparent_image:
+  flutter_svg:
 
-  firebase_storage: ^11.1.1
+  flutter_riverpod:
+  flutter_session_manager: ^1.0.2
+  flutterfire_ui:
   cached_network_image: ^3.2.3
   shared_preferences:
   get: ^4.3.8
@@ -63,6 +67,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 
@@ -87,6 +92,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
