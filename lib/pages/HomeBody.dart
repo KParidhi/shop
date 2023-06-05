@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/display_item.dart';
+import 'package:home/pages/globals.dart';
 import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/CategoriesWidget.dart';
 import 'package:home/widgets/search.dart';
@@ -56,20 +57,17 @@ void initial()async {
                   child:Column(
                     children:
                     <Widget>[
-                      Container(
-                          width: 100,
-                          height:180,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: NetworkImage("https://th.bing.com/th/id/OIP.1dzpxcuf7LgyKLgNtp6zhQHaFA?pid=ImgDet&rs=1"),
-                                fit:BoxFit.fill,
-                              )
-                          )
-                      ),
-                      Text("Name",
+                      SizedBox(height: 40,),
+
+                     CircleAvatar(
+                       backgroundImage: Image.network(pimage).image,
+                       radius: 60,
+                     ),
+                      SizedBox(height: 20,),
+                      Text("$pname",
                         style: TextStyle(fontSize: 25,
                             color: Colors.white),),
+                      SizedBox(height: 20,)
                     ],
                   ),
                 ),

@@ -1,10 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:home/models/usermodel.dart';
 import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:home/pages/completeProfilePage.dart';
+
 import 'package:home/pages/forgotPasswordPage.dart';
 import 'package:home/services/Auth_Service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'globals.dart';
 class LoginPage extends StatefulWidget{
   LoginPage({ super.key });
 
@@ -13,7 +22,7 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
-  firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
+  //firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
   bool circular =false;
@@ -22,6 +31,74 @@ class _LoginPageState extends State<LoginPage>{
     authClass = AuthClass();
     await authClass.googleSignIn(context);
   }
+
+  void checkValues() {
+    String email = _emailController.text.trim();
+    String password = _pwdController.text.trim();
+    if (email == "" || password == "") {
+      print("please fill all the details");
+      Fluttertoast.showToast(
+          msg: "Please fill all the details",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+    else {
+      login(email, password);
+
+
+    }
+  }
+    void login(String email, String password) async
+    {
+      try {
+        if (password == checkpwd) {
+          final credential = await FirebaseAuth.instance
+              .signInWithEmailAndPassword
+            (email: email, password: password);
+
+          if (credential != null) {
+            String uid = credential.user!.uid;
+            DocumentSnapshot userData = await
+            FirebaseFirestore.instance.collection('users').doc(uid).get();
+            UserModel userModel = UserModel.fromMap(userData.data() as
+            Map<String, dynamic>);
+            Fluttertoast.showToast(
+                msg: "login successful!",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+            Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (builder)=>HomePage()),
+                    (route) => false);
+
+          }
+        }
+        else{
+          Fluttertoast.showToast(
+              msg: "Enter correct password",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+        }
+      } on FirebaseAuthException catch(ex){
+        print(ex.code.toString());
+      }
+    }
+
+
+
+
+
   late SharedPreferences logindata;
   late bool newuser;
 
@@ -84,7 +161,15 @@ class _LoginPageState extends State<LoginPage>{
               SizedBox(
                 height: 30,
               ),
-              colorButton(),
+              CupertinoButton(child: Text("Log in"),
+
+                  color: Colors.black,
+                  onPressed: () {
+                    checkValues();
+
+
+                  }),
+
               SizedBox(height: 20,),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -138,51 +223,52 @@ class _LoginPageState extends State<LoginPage>{
   }
 
 
-  Widget colorButton(){
-    return InkWell(
-      onTap: () async {
-        setState(() {
-          circular = true;
-        });
-        try {
-          firebase_auth.UserCredential userCredential =
-          await firebaseAuth.signInWithEmailAndPassword(
-              email:_emailController.text, password:_pwdController.text);
-
-          print(userCredential.user?.email);
-          setState(() {
-            circular=false;
-          });
-          if(_emailController!='' && _pwdController!=''){
-            print('successful');
-            logindata.setBool('login', false);
-            logindata.setString('Email...', _emailController.text);
-          }
-          Navigator.pushAndRemoveUntil(context,
-              MaterialPageRoute(builder: (builder)=>HomePage()) ,
-                  (route) => false);
-        }
-        catch (e) {
-
-        }
-      },
-      child:Container(
-        width: MediaQuery.of(context).size.width - 90,
-        height: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color:Colors.black,
-        ),
-        child:Center(
-          child:
-          Text("Login",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),),
-        ),) ,
-    );
-  }
+  // Widget colorButton(){
+  //   return InkWell(
+  //     onTap: () async {
+  //       setState(() {
+  //         circular = true;
+  //       }
+  //       );
+  //       try {
+  //        // firebase_auth.UserCredential userCredential =
+  //        // await firebaseAuth.signInWithEmailAndPassword(
+  //            // email:_emailController.text, password:_pwdController.text);
+  //
+  //         //print(userCredential.user?.email);
+  //         setState(() {
+  //           circular=false;
+  //         });
+  //         if(_emailController!='' && _pwdController!=''){
+  //           print('successful');
+  //           logindata.setBool('login', false);
+  //           logindata.setString('Email...', _emailController.text);
+  //         }
+  //         Navigator.pushAndRemoveUntil(context,
+  //             MaterialPageRoute(builder: (builder)=>HomePage()) ,
+  //                 (route) => false);
+  //       }
+  //       catch (e) {
+  //
+  //       }
+  //     },
+  //     child:Container(
+  //       width: MediaQuery.of(context).size.width - 90,
+  //       height: 60,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20),
+  //         color:Colors.black,
+  //       ),
+  //       child:Center(
+  //         child:
+  //         Text("Login",
+  //           style: TextStyle(
+  //             color: Colors.white,
+  //             fontSize: 20,
+  //           ),),
+  //       ),) ,
+  //   );
+  // }
   Widget buttonItem(String imagepath,String buttonName,double size) {
     return InkWell(
       onTap:(){asyncButtonItem();},
