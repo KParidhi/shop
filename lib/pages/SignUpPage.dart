@@ -206,42 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 
-// Widget colorButton(){
-//   return
-//     InkWell(
-//         onTap: () {
-//           checkValues();
-//         },
-//
-//
-//
-//           // catch (e) {
-//           //   final snackbar = SnackBar(content:Text("password must be atleast 6 digit long"));
-//           //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
-//           //   setState(() {
-//           //     circular=false;
-//           //   });
-//           // }
-//
-//         child:Container(
-//           width: MediaQuery.of(context).size.width - 90,
-//           height: 60,
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(20),
-//             color:Colors.black,
-//           ),
-//           child:Center(
-//             child: circular?CircularProgressIndicator():
-//             Text("Sign Up",
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 20,
-//               ),),
-//           ) ,
-//         )
-//         );
-//
-// }
+
 // Widget buttonItem(String imagepath,String buttonName,double size) {
 //
 //   return InkWell(
@@ -282,37 +247,6 @@ class _SignUpPageState extends State<SignUpPage> {
 //       ),
 //     ),
 //   );
-// }
-
-
-//print(credential?.user?.email);
-// setState(() {
-//   circular=false;
-// });
-// if(credential!=null) {
-//   String uid = credential.user!.uid;
-//   UserModel newUser = UserModel(
-//     uid: uid,
-//     email: email,
-//     fullname: " ",
-//     profilepic: " ",
-//   );
-// await FirebaseFirestore.instance.
-// collection("users").doc(uid).set(newUser.toMap()).
-// then((value) {
-//   print("new user created");
-
-
-// Navigator.pushAndRemoveUntil(context,
-//     MaterialPageRoute(builder: (builder) => LoginPage()),
-//         (route) => false);
-
-
-// bool circular =false;
-// late AuthClass authClass;
-// void asyncButtonItem() async {
-//   authClass = AuthClass();
-//   await authClass.googleSignIn(context);
 // }
 
 

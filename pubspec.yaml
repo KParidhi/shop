@@ -53,8 +53,8 @@ dependencies:
   image_picker: ^0.8.7+5
   image_cropper: ^4.0.1
   flutter_launcher_icons: ^0.9.2
-  transparent_image:
-  flutter_svg:
+
+
 
   flutter_riverpod:
   flutter_session_manager: ^1.0.2

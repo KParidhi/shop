@@ -33,10 +33,11 @@ class AuthClass{
           UserCredential userCredential=
           await auth.signInWithCredential(credential);
 
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (builder)=>HomePage()) ,
-                  (route) => false);
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(builder: (builder)=>HomePage(
+          //       userModel: null, firebaseUser: null,)) ,
+          //         (route) => false);
 
           currentUser = auth.currentUser;
 

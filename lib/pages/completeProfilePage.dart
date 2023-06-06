@@ -107,7 +107,9 @@ void uploadData()async{
      print("data uploaded......");
 
       Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (builder)=>HomePage()),
+          MaterialPageRoute(builder: (builder)=>HomePage(
+            userModel: widget.userModel,
+          firebaseUser: widget.firebaseUser,)),
               (route) => false);
    });
 }
