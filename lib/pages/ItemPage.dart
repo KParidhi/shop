@@ -10,8 +10,9 @@ class ItemPage extends StatelessWidget{
   final String price;
   final String imageUrl;
   final String desc;
+  final String mobile;
 
-  ItemPage({required this.name, required this.price, required this.imageUrl,  required this.desc});
+  ItemPage({required this.name, required this.price, required this.imageUrl,  required this.desc, required this.mobile});
 
 
 
@@ -23,13 +24,13 @@ class ItemPage extends StatelessWidget{
         children: [
           ItemAppBar(name),
           Padding(padding: EdgeInsets.all(16),
-              child:Image.network(imageUrl.toString(),
+            child:Image.network(imageUrl.toString(),
               height: 300,),
           ),
-        // Arc(
-        //   edge: Edge.TOP,
-        //   arcType:ArcType.CONVEX,
-        //   height: 30,
+          // Arc(
+          //   edge: Edge.TOP,
+          //   arcType:ArcType.CONVEX,
+          //   height: 30,
           //child:
           Container(
             width: double.infinity,
@@ -41,31 +42,31 @@ class ItemPage extends StatelessWidget{
                   Padding(padding: EdgeInsets.only(
                     top:10,
                     bottom: 15,),
-                  child: Row(
-                    children: [
-                      Text(name,   //name
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.orange,
-                        fontWeight: FontWeight.bold,
-                      ),)
-                    ],
-                  ),),
+                    child: Row(
+                      children: [
+                        Text(name,   //name
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),)
+                      ],
+                    ),),
                   Padding(padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(desc,
                       textAlign:TextAlign.justify ,
-                    style: TextStyle(
-                      fontSize: 17,
-                      color:Colors.orange
-                    ),),
+                      style: TextStyle(
+                          fontSize: 17,
+                          color:Colors.orange
+                      ),),
                   ),
-            ],
-                 ),
-                ),
-             ),
+                ],
+              ),
+            ),
+          ),
 
-    ],),
-        bottomNavigationBar:ItemBottomNavBar(price.toString()) ,
-          );
+        ],),
+      bottomNavigationBar:ItemBottomNavBar(price.toString()) ,
+    );
   }
 }

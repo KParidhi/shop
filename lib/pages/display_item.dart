@@ -15,8 +15,9 @@ class Product {
   final String price;
   final String imageUrl;
   final String desc;
+  final String mobile;
 
-  Product({required this.name, required this.price, required this.imageUrl, required this.desc});
+  Product({required this.name, required this.price, required this.imageUrl, required this.desc,required this.mobile});
 }
 
 class Next extends State<DisplayItems>{
@@ -26,118 +27,119 @@ class Next extends State<DisplayItems>{
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       body: Center(
-      child: StreamBuilder<QuerySnapshot>(
-      stream: _usersStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const Text('Something went wrong');
-        }
+        child: StreamBuilder<QuerySnapshot>(
+            stream: _usersStream,
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Something went wrong');
+              }
 
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("Loading");
-        }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Text("Loading");
+              }
 
-        return
-          GridView.builder(
-            itemCount: snapshot.data!.docs.length,
-            padding: const EdgeInsets.all(8),
-
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 0.58),
-
-            itemBuilder: (BuildContext context, int index) {
-              // Get the product data from the Firebase snapshot
-              final data = snapshot.data!.docs[index].data() as Map<String, dynamic>;
-
-              // Create a Product object from the data
-              final product = Product(
-                name: data['ProductName'],
-                price: data['ProductPrice'],
-                imageUrl: data['image'],
-                desc: data['ProductDesc']
-              );
               return
-                Expanded(child:
-                Container(
-                  padding: EdgeInsets.only(left:15,right: 15,top: 10),
-                  margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 150,
-                        alignment: Alignment.topRight,
-                        child:
-                        IconButton(
-                          icon:Icon(Icons.favorite_border,color: Colors.red,),
-                          onPressed: () { },
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){
-                          Navigator.pushNamed(context, "itemPage");
-                        },
-                        child:Container(
-                          margin:EdgeInsets.all(8),
-                          child:CachedNetworkImage(
-                            imageUrl: product.imageUrl,
-                            fit: BoxFit.fitHeight,
-                            placeholder: (context, url) => const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                GridView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    padding: const EdgeInsets.all(8),
+
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 0.58),
+
+                    itemBuilder: (BuildContext context, int index) {
+                      // Get the product data from the Firebase snapshot
+                      final data = snapshot.data!.docs[index].data() as Map<String, dynamic>;
+
+                      // Create a Product object from the data
+                      final product = Product(
+                        name: data['ProductName'],
+                        price: data['ProductPrice'],
+                        imageUrl: data['image'],
+                        desc: data['ProductDesc'],
+                        mobile: data['mobile'],
+                      );
+                      return
+                        Expanded(child:
+                        Container(
+                          padding: EdgeInsets.only(left:15,right: 15,top: 10),
+                          margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          height: 120,
-                          width: 120,
-
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 8),
-                        alignment:Alignment.centerLeft,
-                        child:Text(product.name,style:TextStyle(fontSize:18,
-                          color: Colors.orange,
-                          fontWeight:FontWeight.bold,
-                        ) ,
-                        ),
-                      ),
-
-                      Padding(
-                            padding: EdgeInsets.symmetric(vertical:10),
-                            child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
                             children: [
-                              Text("\u{20B9}${product.price}",
-                                style:TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.orange,
-                              ) ,),
-                            Icon(Icons.shopping_cart_checkout,
-                              color:Colors.orange,
-                            )
-                          ],
-                        ),)
-                    ],
-                  ),
-                ),);}
-          );
-      }
-      ),
-      ),)
-     ;}}
+                              Container(
+                                height: 50,
+                                width: 150,
+                                alignment: Alignment.topRight,
+                                child:
+                                IconButton(
+                                  icon:Icon(Icons.favorite_border,color: Colors.red,),
+                                  onPressed: () { },
+                                ),
+                              ),
+                              InkWell(
+                                onTap: (){
+                                  Navigator.pushNamed(context, "itemPage");
+                                },
+                                child:Container(
+                                  margin:EdgeInsets.all(8),
+                                  child:CachedNetworkImage(
+                                    imageUrl: product.imageUrl,
+                                    fit: BoxFit.fitHeight,
+                                    placeholder: (context, url) => const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                                  ),
+                                  height: 120,
+                                  width: 120,
 
-    /*InkWell(
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 8),
+                                alignment:Alignment.centerLeft,
+                                child:Text(product.name,style:TextStyle(fontSize:18,
+                                  color: Colors.orange,
+                                  fontWeight:FontWeight.bold,
+                                ) ,
+                                ),
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical:10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("\u{20B9}${product.price}",
+                                      style:TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.orange,
+                                      ) ,),
+                                    Icon(Icons.shopping_cart_checkout,
+                                      color:Colors.orange,
+                                    )
+                                  ],
+                                ),)
+                            ],
+                          ),
+                        ),);}
+                );
+            }
+        ),
+      ),)
+    ;}}
+
+/*InkWell(
                   onTap: () {
                     // Navigate to the product detail page
                   },
@@ -182,7 +184,7 @@ class Next extends State<DisplayItems>{
 }*/
 
 
-  /* return Scaffold(
+/* return Scaffold(
      resizeToAvoidBottomInset: false,
      appBar: AppBar(title: Text("Detail Page")),
       body: Center(

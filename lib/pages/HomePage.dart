@@ -1,5 +1,6 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:home/pages/CartPage.dart';
@@ -10,8 +11,12 @@ import 'package:home/services/camera.dart';
 import 'package:home/services/products.dart';
 import 'package:home/widgets/category_list.dart';
 
+import '../models/usermodel.dart';
+
 class HomePage extends StatefulWidget{
-  HomePage({super.key});
+  final UserModel userModel;
+  final User firebaseUser;
+  HomePage({super.key, required this.userModel, required this.firebaseUser});
   @override
   State<HomePage> createState() =>_HomePageState();
 

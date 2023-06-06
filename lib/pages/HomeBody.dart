@@ -1,5 +1,8 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:home/models/usermodel.dart';
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:home/pages/display_item.dart';
@@ -28,21 +31,16 @@ class HomeBody extends StatefulWidget{
 }
 
 class HomeScreen extends State<HomeBody> {
-late SharedPreferences logindata;
+
 late String email;
 
 @override
 void initState(){
   super.initState();
-  initial();
-}
 
-void initial()async {
-  logindata=await SharedPreferences.getInstance();
-  setState(() {
-    email=logindata.getString('Email...')!;
-  });
-}
+ }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +58,11 @@ void initial()async {
                       SizedBox(height: 40,),
 
                      CircleAvatar(
-                       backgroundImage: Image.network(pimage).image,
+                       backgroundImage:
+                       Image.network(pimage).image,
                        radius: 60,
                      ),
+
                       SizedBox(height: 20,),
                       Text("$pname",
                         style: TextStyle(fontSize: 25,
@@ -95,10 +95,16 @@ void initial()async {
                 ListTile(
                   title: Text("Log Out"),
                   leading: Icon(Icons.logout),
-                  onTap: (){
-                    logindata.setBool('login', true);
-                    Navigator.of(context).pop();
-                    Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context)=>LoginPage()));
+                  onTap: () async{
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.popUntil(context,
+                          (route) => route.isFirst);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context)
+                      {return LoginPage();
+                      }
+                      )
+                  );
                   },
                 )
               ]

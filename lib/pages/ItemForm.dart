@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:home/services/camera.dart';
+import 'package:home/widgets/category_list.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:home/services/firebase_services.dart';
@@ -21,9 +22,9 @@ class ItemForm extends StatefulWidget{
 
 class _ItemFormState extends State<ItemForm> {
   //const ProfileScreen({Key? key}): super(key: key);
-  String? profilePic;
+  String? productPic;
 
-  String name = "",desc ="",price="";
+  String name = "",desc ="",price="", mobile="";
   String dropdownValue = 'Books';
   String? imgUrl="";
   bool _isSaving=false;
@@ -58,14 +59,14 @@ class _ItemFormState extends State<ItemForm> {
                               if(file != null)
                               {
                                 setState(() {
-                                  profilePic = file.path;
+                                  productPic = file.path;
                                 });
                               }
                               // imgUrl =await FirebaseServices.getImage(file);
 
                             },
                             child: Container(
-                              child: profilePic==null? CircleAvatar(
+                              child: productPic==null? CircleAvatar(
                                 backgroundColor:Colors.deepOrangeAccent,
                                 radius: 70,
                                 child: Image.asset('images/add_pic.png', height: 80,width: 80),
@@ -73,7 +74,7 @@ class _ItemFormState extends State<ItemForm> {
                               ):
                               CircleAvatar(
                                 radius: 70,
-                                foregroundImage: FileImage(File(profilePic!)),
+                                foregroundImage: FileImage(File(productPic!)),
                               ),
                             ),
                           ),
@@ -116,10 +117,33 @@ class _ItemFormState extends State<ItemForm> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter price';
                             }
                             return null;
                           },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          onChanged: (value){
+                            mobile = value;},
+                          decoration: InputDecoration(
+
+                            labelText: 'Your Phone no',
+                            hintText: 'enter your phone no.',
+                            prefixIcon: Icon(Icons.phone_android),
+
+                            border: OutlineInputBorder(),),
+
+                          validator: (value) {
+                            if (value == null || value.isEmpty||value.trim().length!=10
+                            ) {
+                              return 'Enter a 10 digit mobile number';
+                            }
+                            return null;
+                          },
+
                         ),
                         SizedBox(
                           height: 20,
@@ -183,9 +207,12 @@ class _ItemFormState extends State<ItemForm> {
                           onPressed: () {
                             if(_formKey.currentState!.validate()){
                               SystemChannels.textInput.invokeMapMethod('TextInput.hide');
-                              profilePic==null?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select a Picture')))
+                              productPic==null?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select a Picture')))
                                   : saveInfo();
                             }
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(builder: (builder)=>CategoryList()),
+                                    (route) => false);
                           },
                           child: Text("Add Item"),)
                       ])
@@ -197,13 +224,14 @@ class _ItemFormState extends State<ItemForm> {
   }
 
   saveInfo() async {
-    FirebaseServices.getImage(File(profilePic!)).whenComplete(() async {
-      imgUrl=await FirebaseServices.getImage(File(profilePic!));
+    FirebaseServices.getImage(File(productPic!)).whenComplete(() async {
+      imgUrl=await FirebaseServices.getImage(File(productPic!));
       Map<String, dynamic> data={ 'ProductName': name,
         'ProductPrice' : price,
         'ProductDesc': desc,
         'Category': dropdownValue,
         'image': imgUrl,
+        'mobile': mobile,
       };
       OurShop.add(data);
 

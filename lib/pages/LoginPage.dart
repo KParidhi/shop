@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage>{
     void login(String email, String password) async
     {
       try {
-        if (password == checkpwd) {
+        //if (password == checkpwd) {
           final credential = await FirebaseAuth.instance
               .signInWithEmailAndPassword
             (email: email, password: password);
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage>{
             String uid = credential.user!.uid;
             DocumentSnapshot userData = await
             FirebaseFirestore.instance.collection('users').doc(uid).get();
-            UserModel userModel = UserModel.fromMap(userData.data() as
+             UserModel userModel = UserModel.fromMap(userData.data() as
             Map<String, dynamic>);
             Fluttertoast.showToast(
                 msg: "login successful!",
@@ -75,11 +75,12 @@ class _LoginPageState extends State<LoginPage>{
                 fontSize: 16.0
             );
             Navigator.pushAndRemoveUntil(context,
-                MaterialPageRoute(builder: (builder)=>HomePage()),
+                MaterialPageRoute(builder: (builder)=>HomePage(
+                  userModel: userModel, firebaseUser: credential!.user!)),
                     (route) => false);
 
           }
-        }
+       // }
         else{
           Fluttertoast.showToast(
               msg: "Enter correct password",
@@ -94,18 +95,10 @@ class _LoginPageState extends State<LoginPage>{
         print(ex.code.toString());
       }
     }
-
-
-
-
-
-  late SharedPreferences logindata;
-  late bool newuser;
-
   @override
   void initState() {
     super.initState();
-    check_if_already_login();
+
   }
 
 
@@ -221,54 +214,6 @@ class _LoginPageState extends State<LoginPage>{
     );
 
   }
-
-
-  // Widget colorButton(){
-  //   return InkWell(
-  //     onTap: () async {
-  //       setState(() {
-  //         circular = true;
-  //       }
-  //       );
-  //       try {
-  //        // firebase_auth.UserCredential userCredential =
-  //        // await firebaseAuth.signInWithEmailAndPassword(
-  //            // email:_emailController.text, password:_pwdController.text);
-  //
-  //         //print(userCredential.user?.email);
-  //         setState(() {
-  //           circular=false;
-  //         });
-  //         if(_emailController!='' && _pwdController!=''){
-  //           print('successful');
-  //           logindata.setBool('login', false);
-  //           logindata.setString('Email...', _emailController.text);
-  //         }
-  //         Navigator.pushAndRemoveUntil(context,
-  //             MaterialPageRoute(builder: (builder)=>HomePage()) ,
-  //                 (route) => false);
-  //       }
-  //       catch (e) {
-  //
-  //       }
-  //     },
-  //     child:Container(
-  //       width: MediaQuery.of(context).size.width - 90,
-  //       height: 60,
-  //       decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.circular(20),
-  //         color:Colors.black,
-  //       ),
-  //       child:Center(
-  //         child:
-  //         Text("Login",
-  //           style: TextStyle(
-  //             color: Colors.white,
-  //             fontSize: 20,
-  //           ),),
-  //       ),) ,
-  //   );
-  // }
   Widget buttonItem(String imagepath,String buttonName,double size) {
     return InkWell(
       onTap:(){asyncButtonItem();},
@@ -343,16 +288,7 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
   }
-void check_if_already_login() async {
-  logindata = await SharedPreferences.getInstance();
-  newuser = (logindata.getBool('login') ?? true);
-  print(newuser);
-  if (newuser == false) {
-    Navigator.pushAndRemoveUntil(context,
-        new MaterialPageRoute(builder: (context) => HomePage()),
-            (route)=>false);
-  }
-}
+
 }
 
 
