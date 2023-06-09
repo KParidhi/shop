@@ -70,6 +70,7 @@ class _search extends State<search>{
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
+
                     ),
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(item['image']),

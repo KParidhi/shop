@@ -60,6 +60,25 @@ class ItemPage extends StatelessWidget{
                           color:Colors.orange
                       ),),
                   ),
+            Padding(padding: EdgeInsets.only(
+              top:10,
+              bottom: 15,),
+              child: Row(
+                children: [
+                  Text("Seller's Mob : ",   //name
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  Text(mobile,   //name
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    ),)
+                ],
+              ),)
                 ],
               ),
             ),

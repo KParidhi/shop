@@ -121,6 +121,7 @@ class _ItemFormState extends State<ItemForm> {
                             }
                             return null;
                           },
+
                         ),
                         SizedBox(
                           height: 20,
@@ -191,11 +192,15 @@ class _ItemFormState extends State<ItemForm> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter price';
                             }
                             return null;
                           },
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+
                         SizedBox(
                           height: 20,
                         ),

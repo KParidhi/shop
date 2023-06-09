@@ -37,28 +37,28 @@ class _ItemBottomNavBarState extends State<ItemBottomNavBar> {
          fontWeight: FontWeight.bold,
          color: Colors.orange
         ),),
-        ElevatedButton.icon(onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context)=>CartPage(),
-          ),);
-        },
-         icon: Icon(CupertinoIcons.cart_badge_plus),
-         label: Text("add to Cart",style: TextStyle(
-          fontSize: 16,fontWeight: FontWeight.bold,
-         ),
-         ),
-         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.orange),
-          padding: MaterialStateProperty.all(
-           EdgeInsets.symmetric(vertical: 13,horizontal: 15),
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-           )
-          )
-         ),
-        ),
+        // ElevatedButton.icon(onPressed: (){
+        //   Navigator.of(context).push(MaterialPageRoute(
+        //     builder: (context)=>CartPage(),
+        //   ),);
+        // },
+        //  icon: Icon(CupertinoIcons.cart_badge_plus),
+        //  label: Text("add to Cart",style: TextStyle(
+        //   fontSize: 16,fontWeight: FontWeight.bold,
+        //  ),
+        //  ),
+        //  style: ButtonStyle(
+        //   backgroundColor: MaterialStateProperty.all(Colors.orange),
+        //   padding: MaterialStateProperty.all(
+        //    EdgeInsets.symmetric(vertical: 13,horizontal: 15),
+        //   ),
+        //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //    RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(20),
+        //    )
+        //   )
+        //  ),
+        // ),
        ],
       ),
    )
