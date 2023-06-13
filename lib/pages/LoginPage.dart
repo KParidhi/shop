@@ -7,11 +7,11 @@ import 'package:home/models/usermodel.dart';
 import 'package:home/pages/HomePage.dart';
 import 'package:home/pages/SignUpPage.dart';
 import 'package:flutter/material.dart';
-import 'package:home/pages/completeProfilePage.dart';
+
 
 import 'package:home/pages/forgotPasswordPage.dart';
 import 'package:home/services/Auth_Service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'globals.dart';
 class LoginPage extends StatefulWidget{
@@ -55,7 +55,6 @@ class _LoginPageState extends State<LoginPage>{
     void login(String email, String password) async
     {
       try {
-        //if (password == checkpwd) {
           final credential = await FirebaseAuth.instance
               .signInWithEmailAndPassword
             (email: email, password: password);
@@ -80,7 +79,7 @@ class _LoginPageState extends State<LoginPage>{
                     (route) => false);
 
           }
-       // }
+
         else{
           Fluttertoast.showToast(
               msg: "Enter correct password",

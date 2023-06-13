@@ -1,8 +1,5 @@
-import 'package:badges/badges.dart' as badges;
-import 'package:clippy_flutter/arc.dart';
-import 'package:flutter/material.dart';
-import 'package:home/widgets/CartItemSamples.dart';
 
+import 'package:flutter/material.dart';
 class HomeAppBar extends StatefulWidget{
   @override
   State<HomeAppBar> createState() => _HomeAppBarState();

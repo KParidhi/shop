@@ -10,9 +10,8 @@ import 'package:home/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:home/pages/completeProfilePage.dart';
 
-import 'package:home/services/Auth_Service.dart';
 
-import 'globals.dart';
+
 
 class SignUpPage extends StatefulWidget{
   SignUpPage({super.key });
@@ -64,7 +63,6 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       final credential = await FirebaseAuth.instance.
       createUserWithEmailAndPassword(email: email, password: password);
-      checkpwd=password;
       if (credential != null) {
         String uid = credential.user!.uid;
         UserModel newUser = UserModel(

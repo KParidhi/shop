@@ -1,16 +1,13 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:home/pages/CartPage.dart';
 import 'package:home/pages/HomeBody.dart';
-import 'package:home/pages/ItemForm.dart';
-import 'package:home/pages/display_item.dart';
-import 'package:home/services/camera.dart';
-import 'package:home/services/products.dart';
+import 'package:home/pages/LoginPage.dart';
+import 'package:home/pages/profile_screen.dart';
 import 'package:home/widgets/category_list.dart';
-
 import '../models/usermodel.dart';
 
 class HomePage extends StatefulWidget{
@@ -23,11 +20,136 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  var pagesData = [HomeBody(),CategoryList(),CartPage()];
+  String profilePicUrl="";
+  String name="";
+  Future<Map<String,String>>getProfileData()
+  async{
+    DocumentSnapshot documentSnapshot=
+    await FirebaseFirestore.instance.collection("users").
+    doc(widget.firebaseUser.uid).get();
+    if(documentSnapshot.exists){
+      Map<String, dynamic> data=
+      documentSnapshot.data() as Map<String,dynamic>;
+      String profilePic = data["profilepic"];
+      String name = data["fullname"];
+      return {
+        "profilepic":profilePic,
+        "name":name,};
+    }
+    return {"profilepic": '',
+      "name":'',
+    };
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    getProfileData().then((data) {
+      setState(() {
+        profilePicUrl = data["profilepic"]??'';
+        name=data["name"]??'';
+      });
+    });
+
+  }
+
+
+
+  var pagesData = [HomeBody(),
+    CategoryList(),CartPage()];
   int selectedItem = 0;
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      drawer:Drawer(
+        child: FutureBuilder<Map<String,String>>(
+            future: getProfileData(),
+            builder: (context,snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
+              else if (snapshot.hasError) {
+                return Text('Error loading image');
+              } else {
+                final profilePicUrl = snapshot.data?["profilepic"] ?? '';
+                final name = snapshot.data?["name"] ?? '';
+
+                return Column(
+                    children:
+                    <Widget>[
+                      Container(
+                        color: Colors.orange,
+                        width: double.infinity,
+                        child: Column(
+                          children:
+                          <Widget>[
+                            SizedBox(height: 40,),
+
+                            CircleAvatar(
+                              backgroundImage: profilePicUrl.isNotEmpty ?
+                              NetworkImage(profilePicUrl) : null,
+                              radius: 70,
+                            ),
+
+                            SizedBox(height: 20,),
+                            Text(name,
+                              style: TextStyle(fontSize: 25,
+                                  color: Colors.white),),
+                            SizedBox(height: 20,)
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                          title: Text("My Orders"),
+                          leading: Icon(Icons.shopping_bag_outlined),
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.push(context, MaterialPageRoute(builder: (
+                                context) => CartPage()));
+                          }
+
+                      ),
+                      ListTile(
+                          title: Text("Settings"),
+                          leading: Icon(Icons.settings),
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.push(context, MaterialPageRoute(builder: (
+                                context) => ProfileScreen()));
+                          }
+                      ),
+                      ListTile(
+                          title: Text("My products"),
+                          leading: Icon(Icons.sell)
+                      ),
+                      ListTile(
+                        title: Text("Log Out"),
+                        leading: Icon(Icons.logout),
+                        onTap: () async {
+                          await FirebaseAuth.instance.signOut();
+                          Navigator.popUntil(context,
+                                  (route) => route.isFirst);
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                                return LoginPage();
+                              }
+                              )
+                          );
+                        },
+                      )
+                    ]
+
+                );
+
+              }
+            }
+        ),
+      ),
+      appBar: AppBar(
+        title: Text("Our's shop"),
+        backgroundColor: Colors.orange,),
+
+
 
       body:
         pagesData[selectedItem],

@@ -1,128 +1,32 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home/models/usermodel.dart';
-import 'package:home/pages/CartPage.dart';
-import 'package:home/pages/LoginPage.dart';
+
 import 'package:home/pages/display_item.dart';
-import 'package:home/pages/globals.dart';
-import 'package:home/pages/profile_screen.dart';
+
 import 'package:home/widgets/CategoriesWidget.dart';
 import 'package:home/widgets/search.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-
-import 'package:home/widgets/HomeAppBar.dart';
-
-
-void main(){runApp(
-    MaterialApp(
-        title:"Home Screen",
-        home:HomeBody())
-);}
 class HomeBody extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState(){
-    return HomeScreen();
-    //throw UnimplementedError();
-  }
 
+
+  const HomeBody({super.key});
+  @override
+  State<HomeBody> createState()=> _HomeBodyState();
 }
 
-class HomeScreen extends State<HomeBody> {
+class _HomeBodyState extends State<HomeBody> {
 
 late String email;
 
 @override
-void initState(){
-  super.initState();
-
- }
-
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:Drawer(
-          child:Column(
-              children:
-              <Widget>[
-                Container(
-                  color: Colors.orange,
-                  width: double.infinity,
-                  child:Column(
-                    children:
-                    <Widget>[
-                      SizedBox(height: 40,),
 
-                     CircleAvatar(
-                       backgroundImage:
-                       Image.network(pimage).image,
-                       radius: 60,
-                     ),
-
-                      SizedBox(height: 20,),
-                      Text("$pname",
-                        style: TextStyle(fontSize: 25,
-                            color: Colors.white),),
-                      SizedBox(height: 20,)
-                    ],
-                  ),
-                ),
-                ListTile(
-                    title: Text("My Orders"),
-                    leading: Icon(Icons.shopping_bag_outlined),
-                    onTap: (){
-                      Navigator.of(context).pop();
-                      Navigator.push(context,MaterialPageRoute(builder:(context) => CartPage()));
-                    }
-
-                ),
-                ListTile(
-                    title: Text("Settings"),
-                    leading: Icon(Icons.settings),
-                    onTap: (){
-                      Navigator.of(context).pop();
-                      Navigator.push(context,MaterialPageRoute(builder:(context) => ProfileScreen()));
-      }
-                ),
-                ListTile(
-                    title: Text("My products"),
-                    leading: Icon(Icons.sell)
-                ),
-                ListTile(
-                  title: Text("Log Out"),
-                  leading: Icon(Icons.logout),
-                  onTap: () async{
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.popUntil(context,
-                          (route) => route.isFirst);
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context)
-                      {return LoginPage();
-                      }
-                      )
-                  );
-                  },
-                )
-              ]
-
-          )
-      ),
       body:
      SingleChildScrollView(
        child: Column(
             children: [
-                  // Container(
-                  //   child: ListView(
-                  //     shrinkWrap: true,
-                  //       physics: NeverScrollableScrollPhysics(),
-                  //       children: [
-                          HomeAppBar(),
-                          // Expanded(
-                          //   child:
                             Container(
                               padding: EdgeInsets.only(top: 10),
                               decoration: BoxDecoration(
