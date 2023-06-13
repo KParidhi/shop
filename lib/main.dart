@@ -7,7 +7,7 @@ import 'package:home/models/FIrebaseH.dart';
 
 import 'package:home/pages/HomePage.dart';
 
-import 'package:home/pages/LoginPage.dart';
+
 import 'package:home/pages/splash.dart';
 
 import 'models/usermodel.dart';

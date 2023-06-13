@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:home/pages/forgotPasswordPage.dart';
 import 'package:home/services/Auth_Service.dart';
 
-
-import 'globals.dart';
 class LoginPage extends StatefulWidget{
   LoginPage({ super.key });
 
@@ -22,9 +20,10 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
-  //firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
+
   bool circular =false;
   late AuthClass authClass;
   void asyncButtonItem() async {

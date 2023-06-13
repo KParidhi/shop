@@ -1,14 +1,18 @@
+
+
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'globals.dart' as globals;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:home/models/usermodel.dart';
 import 'package:home/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:home/pages/completeProfilePage.dart';
+import 'package:home/services/Auth_Service.dart';
+
 
 
 
@@ -21,11 +25,15 @@ class SignUpPage extends StatefulWidget{
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-   //firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
 
-
+  // late AuthClass authClass;
+  // void asyncButtonItem() async {
+  //   authClass = AuthClass();
+  //   await authClass.googleSignIn(context);
+  // }
 
   void checkValues() {
     String email = _emailController.text.trim();
@@ -107,10 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),),
                 SizedBox(height: 20,),
 
-                //   Padding(
-                // padding: const EdgeInsets.only(top: 10),
-                //     child: buttonItem("lib/images/googleIcon.png","continue with google",25,
-                //)),
+                 //buttonItem("lib/images/googleIcon.png","continue with google",25,),
 
 
                 Padding(
@@ -205,46 +210,47 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
 
-// Widget buttonItem(String imagepath,String buttonName,double size) {
-//
-//   return InkWell(
-//     onTap:(){asyncButtonItem();},
-//     child:
-//     Container(
-//       width: MediaQuery.of(context).size.width - 60,
-//       height: 60,
-//
-//       child: Card(
-//         elevation: 8,
-//         color: Colors.black,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(15),
-//           side: BorderSide(
-//               width: 1,
-//               color: Colors.grey),
-//         ),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Image.asset(
-//               imagepath,
-//               height: size,
-//               width: size,
-//             ),
-//             SizedBox(
-//               width: 15,
-//             ),
-//             Text(
-//               buttonName,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 17,
-//               ),),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }
+/*Widget buttonItem(String imagepath,String buttonName,double size) {
+  return InkWell(
+    onTap:(){asyncButtonItem();},
+    child:
+    Container(
+      width: MediaQuery.of(context).size.width - 60,
+      height: 60,
 
+      child: Card(
+        elevation: 8,
+        color: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+              width: 1,
+              color: Colors.black),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              imagepath,
+              height: size,
+              width: size,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              buttonName,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+              ),),
+          ],
+        ),
+      ),
+    ),
+  );
+
+}
+
+ */
 

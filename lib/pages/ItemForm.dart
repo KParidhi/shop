@@ -79,7 +79,7 @@ class _ItemFormState extends State<ItemForm> {
                           ),
 
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 10,),
                         Text("pick an image....",
                         style: TextStyle(
                           color: Colors.orange,
@@ -90,7 +90,7 @@ class _ItemFormState extends State<ItemForm> {
                         SizedBox(height: 20,),
 
                         Container(
-                          width: 310,
+                          width: 360,
                           child:Column(
                             children: [
 
@@ -100,10 +100,20 @@ class _ItemFormState extends State<ItemForm> {
                             decoration: InputDecoration(
 
                               labelText: 'Product Name',
+                              labelStyle: TextStyle(
+                                color: Colors.orange
+                              ),
                               hintText: 'enter name',
-                              prefixIcon: Icon(Icons.drive_file_rename_outline),
+                              prefixIcon: Icon(Icons.drive_file_rename_outline,
+                              color: Colors.orange,),
 
-                              border: OutlineInputBorder(),),
+                                focusedBorder:  OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                      width: 1.5,
+                                      color: Colors.orange,
+                                  ),
+                                ),),
 
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -124,10 +134,20 @@ class _ItemFormState extends State<ItemForm> {
                           decoration: InputDecoration(
 
                               labelText: 'Product Price',
+                              labelStyle: TextStyle(
+                                  color: Colors.orange
+                              ),
                               hintText: 'enter Price',
-                              prefixIcon: Icon(Icons.currency_rupee),
+                              prefixIcon: Icon(Icons.currency_rupee,
+                                color:Colors.orange ,),
 
-                              border: OutlineInputBorder()
+                            focusedBorder:  OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                width: 1.5,
+                                color: Colors.orange,
+                              ),
+                            ),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -149,10 +169,19 @@ class _ItemFormState extends State<ItemForm> {
 
 
                             labelText: 'Your Phone no',
+                            labelStyle: TextStyle(
+                                color: Colors.orange
+                            ),
                             hintText: 'enter your phone no.',
-                            prefixIcon: Icon(Icons.phone_android),
+                            prefixIcon: Icon(Icons.phone_android,
+                            color: Colors.orange,),
 
-                            border: OutlineInputBorder(
+                            focusedBorder:  OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                width: 1.5,
+                                color: Colors.orange,
+                              ),
                             ),
                           ),
 
@@ -204,10 +233,20 @@ class _ItemFormState extends State<ItemForm> {
                           decoration: InputDecoration(
 
                               labelText: 'Product Description',
+                              labelStyle: TextStyle(
+                                  color: Colors.orange
+                              ),
                               hintText: 'enter description(Short)',
-                              prefixIcon: Icon(Icons.description),
+                              prefixIcon: Icon(Icons.description,
+                              color: Colors.orange,),
 
-                              border: OutlineInputBorder()
+                            focusedBorder:  OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                width: 1.5,
+                                color: Colors.orange,
+                              ),
+                            ),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
