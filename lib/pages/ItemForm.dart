@@ -46,8 +46,7 @@ class _ItemFormState extends State<ItemForm> {
               child: Center(
                   child: Column(
                       children: [
-                        SizedBox(height: 100,),
-                        Text("Add Item", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold,),),
+                        SizedBox(height: 20,),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -81,37 +80,52 @@ class _ItemFormState extends State<ItemForm> {
 
                         ),
                         SizedBox(height: 20,),
+                        Text("pick an image....",
+                        style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
 
-                        TextFormField(
-                          onChanged: (value){
-                            name = value;},
-                          decoration: InputDecoration(
-
-                            labelText: 'Product Name',
-                            hintText: 'enter name',
-                            prefixIcon: Icon(Icons.drive_file_rename_outline),
-
-                            border: OutlineInputBorder(),),
-
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-
-                        ),
+                        ),),
                         SizedBox(height: 20,),
+
+                        Container(
+                          width: 310,
+                          child:Column(
+                            children: [
+
+                          TextFormField(
+                            onChanged: (value){
+                              name = value;},
+                            decoration: InputDecoration(
+
+                              labelText: 'Product Name',
+                              hintText: 'enter name',
+                              prefixIcon: Icon(Icons.drive_file_rename_outline),
+
+                              border: OutlineInputBorder(),),
+
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+
+                          ),
+
+                        SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value1){
                             price = value1;
 
                           },
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
 
                               labelText: 'Product Price',
                               hintText: 'enter Price',
-                              prefixIcon: Icon(Icons.money),
+                              prefixIcon: Icon(Icons.currency_rupee),
 
                               border: OutlineInputBorder()
                           ),
@@ -128,14 +142,19 @@ class _ItemFormState extends State<ItemForm> {
                         ),
                         TextFormField(
                           onChanged: (value){
-                            mobile = value;},
+                            mobile = value;
+                            },
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
+
 
                             labelText: 'Your Phone no',
                             hintText: 'enter your phone no.',
                             prefixIcon: Icon(Icons.phone_android),
 
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(
+                            ),
+                          ),
 
                           validator: (value) {
                             if (value == null || value.isEmpty||value.trim().length!=10
@@ -197,9 +216,9 @@ class _ItemFormState extends State<ItemForm> {
                             return null;
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+              ])
+
+            ),
 
                         SizedBox(
                           height: 20,

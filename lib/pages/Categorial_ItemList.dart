@@ -76,11 +76,7 @@ class CategoryItems extends State<CategoryItem> {
                                                         height: 50,
                                                         width: 150,
                                                         alignment: Alignment.topRight,
-                                                        child:
-                                                        IconButton(
-                                                            icon:Icon(Icons.favorite_border,color: Colors.red,),
-                                                            onPressed: () { },
-                                                        ),
+
                                                     ),
                                                     InkWell(
                                                         onTap: (){

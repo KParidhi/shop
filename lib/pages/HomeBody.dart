@@ -66,10 +66,7 @@ late String email;
                                               ),
 
                                               Spacer(),
-                                              Icon(Icons.camera_alt,
-                                                size: 27,
-                                                color: Colors.orange,
-                                              )
+
                                             ]),
 
                                       ),

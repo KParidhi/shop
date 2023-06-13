@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthClass{
-  static User? currentUser;
+
   FirebaseAuth auth= FirebaseAuth.instance;
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
@@ -39,7 +39,7 @@ class AuthClass{
           //       userModel: null, firebaseUser: null,)) ,
           //         (route) => false);
 
-          currentUser = auth.currentUser;
+
 
         }catch(e){
           final snackbar = SnackBar(content:Text(e.toString()));

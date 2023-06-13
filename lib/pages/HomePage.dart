@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
 
 
   var pagesData = [HomeBody(),
-    CategoryList(),CartPage()];
+    CategoryList()];
   int selectedItem = 0;
   @override
   Widget build(BuildContext context){
@@ -99,29 +99,8 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      ListTile(
-                          title: Text("My Orders"),
-                          leading: Icon(Icons.shopping_bag_outlined),
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            Navigator.push(context, MaterialPageRoute(builder: (
-                                context) => CartPage()));
-                          }
 
-                      ),
-                      ListTile(
-                          title: Text("Settings"),
-                          leading: Icon(Icons.settings),
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            Navigator.push(context, MaterialPageRoute(builder: (
-                                context) => ProfileScreen()));
-                          }
-                      ),
-                      ListTile(
-                          title: Text("My products"),
-                          leading: Icon(Icons.sell)
-                      ),
+
                       ListTile(
                         title: Text("Log Out"),
                         leading: Icon(Icons.logout),
@@ -146,7 +125,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: Text("Our's shop"),
+        title: Text("Our shop"),
         backgroundColor: Colors.orange,),
 
 
@@ -168,10 +147,7 @@ class _HomePageState extends State<HomePage> {
           Icon(Icons.add,
             size:30,
             color: Colors.white,),
-          Icon(Icons.shopping_cart,
-            size:30,
-            color: Colors.white,
-          ),
+
 
         ],
         index: selectedItem,
