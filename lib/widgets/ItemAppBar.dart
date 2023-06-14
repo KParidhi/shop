@@ -6,7 +6,7 @@ class ItemAppBar extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      color: Colors.white,
+      color: Colors.orange,
       padding: EdgeInsets.all(25),
       child:Row(
         children: [
@@ -16,7 +16,7 @@ class ItemAppBar extends StatelessWidget{
             },
             child: Icon(Icons.arrow_back,
             size: 30,
-                color: Colors.orange,
+                color: Colors.white,
             ),
           ),
           Padding(padding: EdgeInsets.only(left: 20),
@@ -24,7 +24,7 @@ class ItemAppBar extends StatelessWidget{
             style: TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
-              color:Colors.orange,
+              color:Colors.white,
             ),),),
           Spacer(),
           // Icon(Icons.favorite,

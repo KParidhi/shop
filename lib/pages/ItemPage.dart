@@ -1,5 +1,6 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:home/widgets/ItemAppBar.dart';
 import 'package:home/widgets/ItemBottomNavBar.dart';
 import 'package:home/models/category_item.dart';
@@ -65,18 +66,31 @@ class ItemPage extends StatelessWidget{
               bottom: 15,),
               child: Row(
                 children: [
-                  Text("Seller's Mob : ",   //name
+                  Padding(padding: EdgeInsets.only(right: 20)),
+                  Text("Call Seller :",   //name
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.orange,
                       fontWeight: FontWeight.bold,
                     ),),
-                  Text(mobile,   //name
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.orange,
-                      fontWeight: FontWeight.bold,
-                    ),)
+                  Padding(padding: EdgeInsets.only(left: 10)),
+                  ElevatedButton(onPressed:
+                    () {
+                      FlutterPhoneDirectCaller.callNumber(mobile);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+
+                      ),
+
+                    child: Text("$mobile",   //name
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                  )
+                  ,Padding(padding: EdgeInsets.only(right: 30))
                 ],
               ),)
                 ],
@@ -85,7 +99,8 @@ class ItemPage extends StatelessWidget{
           ),
 
         ],),
-      bottomNavigationBar:ItemBottomNavBar(price.toString()) ,
+      bottomNavigationBar:ItemBottomNavBar(
+          price.toString()) ,
     );
   }
 }
