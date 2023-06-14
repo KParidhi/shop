@@ -83,12 +83,12 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children:
                           <Widget>[
-                            SizedBox(height: 40,),
+                            SizedBox(height: 60,),
 
                             CircleAvatar(
                               backgroundImage: profilePicUrl.isNotEmpty ?
                               NetworkImage(profilePicUrl) : null,
-                              radius: 70,
+                              radius: 90,
                             ),
 
                             SizedBox(height: 20,),
@@ -99,23 +99,30 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
+                      Divider(height: 5,
+                        thickness: 5,),
+                      Padding(padding: EdgeInsets.only(top: 15),),
+
+              ListTile(
+                            title:Text("Log Out",
+                            style: TextStyle(
+                              fontSize: 17
+                            ),),
+                            leading: Icon(Icons.logout),
+                            onTap: () async {
+                              await FirebaseAuth.instance.signOut();
+                              Navigator.popUntil(context,
+                                      (route) => route.isFirst);
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return LoginPage();
+                                  }
+                                  )
+                              );
+                            },
+                          ),
 
 
-                      ListTile(
-                        title: Text("Log Out"),
-                        leading: Icon(Icons.logout),
-                        onTap: () async {
-                          await FirebaseAuth.instance.signOut();
-                          Navigator.popUntil(context,
-                                  (route) => route.isFirst);
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                                return LoginPage();
-                              }
-                              )
-                          );
-                        },
-                      )
                     ]
 
                 );

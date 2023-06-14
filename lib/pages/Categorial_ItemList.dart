@@ -64,8 +64,8 @@ class CategoryItems extends State<CategoryItem> {
                                     return
                                         Expanded(child:
                                         Container(
-                                            padding: EdgeInsets.only(left:15,right: 15,top: 10),
-                                            margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                            padding: EdgeInsets.only(left:6,right: 6),
+                                            margin: EdgeInsets.symmetric(vertical: 6,horizontal: 6),
                                             decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius: BorderRadius.circular(20),
@@ -88,44 +88,42 @@ class CategoryItems extends State<CategoryItem> {
                                                             );
                                                         },
                                                         child:Container(
-                                                            margin:EdgeInsets.all(8),
+
                                                             child:CachedNetworkImage(
                                                                 imageUrl: product.imageUrl,
                                                                 fit: BoxFit.fitHeight,
                                                                 placeholder: (context, url) => Transform.scale(scale: 0.5,
                                                                     child: const CircularProgressIndicator()),
                                                                 errorWidget: (context, url, error) => const Icon(Icons.error),),
-                                                            height: 120,
-                                                            width: 120,
+                                                            height: 170,
+                                                            width: 130,
 
                                                         ),
                                                     ),
-                                                    Container(
-                                                        padding: EdgeInsets.only(bottom: 8),
-                                                        alignment:Alignment.centerLeft,
-                                                        child:Text(product.name,style:TextStyle(fontSize:18,
-                                                            color: Colors.orange,
-                                                            fontWeight:FontWeight.bold,
-                                                        ) ,
+                                                    Padding(padding: EdgeInsets.only(top: 25)),
+                                                    Row(
+                                                      children: [
+                                                          Padding(padding: EdgeInsets.only(left: 6)),
+                                                        Container(
+                                                            //padding: EdgeInsets.only(bottom: 8),
+                                                            alignment:Alignment.centerLeft,
+                                                            child:Text(product.name,style:TextStyle(fontSize:19,
+                                                                color: Colors.orange,
+                                                                fontWeight:FontWeight.bold,
+                                                            ) ,
+                                                            ),
                                                         ),
-                                                    ),
-
-                                                    Padding(
-                                                        padding: EdgeInsets.symmetric(vertical:10),
-                                                        child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: [
+                                                                Spacer(),
                                                                 Text("\u{20B9}${product.price}",
                                                                     style:TextStyle(
-                                                                        fontSize: 15,
+                                                                        fontSize: 17,
                                                                         fontWeight: FontWeight.bold,
                                                                         color: Colors.orange,
                                                                     ) ,),
-                                                                Icon(Icons.shopping_cart_checkout,
-                                                                    color:Colors.orange,
-                                                                )
+                                                          Padding(padding: EdgeInsets.only(right: 6))
                                                             ],
-                                                        ),)
+                                                        ),
+
                                                 ],
                                             ),
                                         ),);}
